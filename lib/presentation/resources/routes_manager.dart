@@ -1,4 +1,5 @@
 
+import 'package:air_shop/app/di.dart';
 import 'package:air_shop/presentation/forgot_password/forgot_password.dart';
 import 'package:air_shop/presentation/login/login.dart';
 import 'package:air_shop/presentation/main/main.dart';
@@ -28,8 +29,8 @@ class RouteGenerator
       case Routes.splashRoute:
         return MaterialPageRoute(builder: (_) => SplashView());
       case Routes.loginRoute:
-        // initLoginModule();
-        return MaterialPageRoute(builder: (_) => LoginView());
+        initLoginModule();
+        return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.registerRoute:
         // initRegisterModule();
         return MaterialPageRoute(builder: (_) => RegisterView());

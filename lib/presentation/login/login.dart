@@ -1,3 +1,4 @@
+import 'package:air_shop/app/di.dart';
 import 'package:air_shop/presentation/login/login_viewmodel.dart';
 import 'package:air_shop/presentation/resources/assets_manager.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
@@ -15,7 +16,7 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView> {
-  final LoginViewModel _viewModel = LoginViewModel(null);
+  final LoginViewModel _viewModel = instance<LoginViewModel>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
