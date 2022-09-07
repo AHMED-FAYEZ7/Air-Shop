@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:air_shop/app/functions.dart';
 import 'package:air_shop/domain/usecase/login_usecase.dart';
 import 'package:air_shop/presentation/base/base_viewmodel.dart';
+import 'package:air_shop/presentation/common/freezed_data_classes.dart';
 
 
 class LoginViewModel extends BaseViewModel
@@ -12,10 +13,9 @@ class LoginViewModel extends BaseViewModel
   final StreamController _passwordStreamController = StreamController<String>.broadcast();
   final StreamController _isAllInputValidStreamController = StreamController<void>.broadcast();
   StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
+  var loginObject = LoginObject("","");
 
-  // var loginObject = LoginObject("","");
-
-  LoginUseCase _loginUseCase;
+  LoginUseCase? _loginUseCase;
   LoginViewModel(this._loginUseCase);
 
   // inputs
@@ -28,7 +28,7 @@ class LoginViewModel extends BaseViewModel
   void dispose() {
     _emailStreamController.close();
     _passwordStreamController.close();
-    // _isAllInputValidStreamController.close();
+    _isAllInputValidStreamController.close();
     // isUserLoggedInSuccessfullyStreamController.close();
   }
 
@@ -39,17 +39,35 @@ class LoginViewModel extends BaseViewModel
   Sink get inputPassword => _passwordStreamController.sink;
 
   @override
-  login(){}
+  login() async{
+    (await _loginUseCase?.execute(LoginUseCaseInput(loginObject.email, loginObject.password)))
+        ?.fold((failure) => {
+          print(failure.message)
+    }, (data) => {
+      print(data.data?.phone)
+    });
+  }
 
   @override
   setEmail(String email) {
     inputEmail.add(email);
+    loginObject = loginObject.copyWith(
+        email: email
+    );
+    _validate();
   }
 
   @override
   setPassword(String password) {
     inputPassword.add(password);
+    loginObject = loginObject.copyWith(
+      password: password
+    );
+    _validate();
   }
+
+  @override
+  Sink get inputAllInputsValid => _isAllInputValidStreamController.sink;
 
   //---outputs-----
 
@@ -61,11 +79,27 @@ class LoginViewModel extends BaseViewModel
   Stream<bool> get outputIsPasswordValid =>
       _passwordStreamController.stream.map((password) => _isPasswordValid(password));
 
+  @override
+  Stream<bool> get outputAllInputsValid =>
+      _isAllInputValidStreamController.stream.map((_) => _isAllInputSValid());
+
   //--------private----------
+
+  _validate(){
+    inputAllInputsValid.add(null);
+  }
 
   _isPasswordValid(String password){
     return password.isNotEmpty;
   }
+
+  bool _isAllInputSValid(){
+    return _isPasswordValid(loginObject.password) &&
+        isEmailValid(loginObject.email);
+  }
+
+
+
 
 }
 
@@ -77,11 +111,11 @@ abstract class LoginViewModelInputs {
 // two sinks for streams
   Sink get inputEmail;
   Sink get inputPassword;
-  // Sink get inputAllInputsValid;
+  Sink get inputAllInputsValid;
 }
 
 abstract class LoginViewModelOutputs {
   Stream<bool> get outputIsEmailValid;
   Stream<bool> get outputIsPasswordValid;
-  // Stream<bool> get outputAllInputsValid;
+  Stream<bool> get outputAllInputsValid;
 }

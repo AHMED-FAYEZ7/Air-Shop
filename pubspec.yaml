@@ -105,6 +105,9 @@ flutter:
           weight: 400
         - asset: assets/fonts/Montserrat-Light.ttf
           weight: 300
+    - family: IconBroken
+      fonts:
+        - asset: assets/fonts/icons.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
