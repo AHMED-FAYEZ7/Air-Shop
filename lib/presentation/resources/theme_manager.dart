@@ -46,9 +46,9 @@ ThemeData getAppTheme()
     // elevated button theme
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        textStyle: getRegularStyle(color: ColorManager.white),
+        textStyle: getBoldStyle(color: ColorManager.white),
         primary: ColorManager.primary,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSize.s12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(AppSize.s20)),
       ),
     ),
 
@@ -102,7 +102,7 @@ ThemeData getAppTheme()
             color: ColorManager.grey,
             width: AppSize.s1_5
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s20)),
       ),
 
       // focused border
@@ -111,7 +111,7 @@ ThemeData getAppTheme()
             color: ColorManager.primary,
             width: AppSize.s1_5
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s20)),
       ),
 
       // error border
@@ -120,7 +120,7 @@ ThemeData getAppTheme()
             color: ColorManager.error,
             width: AppSize.s1_5
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s20)),
       ),
 
       // focused error border
@@ -129,7 +129,7 @@ ThemeData getAppTheme()
             color: ColorManager.primary,
             width: AppSize.s1_5
         ),
-        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s8)),
+        borderRadius: const BorderRadius.all(Radius.circular(AppSize.s20)),
       ),
 
     ),

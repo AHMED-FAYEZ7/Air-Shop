@@ -1,6 +1,7 @@
 import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/onboarding/onboarding_viewmodel.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
+import 'package:air_shop/presentation/resources/routes_manager.dart';
 import 'package:air_shop/presentation/resources/strings_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,9 @@ class _OnBoardingViewState extends State<OnBoardingView> {
           appBar: AppBar(
             actions: [
               TextButton(
-                onPressed: () {  },
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.loginRoute);
+                },
                 child: Text(
                   AppStrings.skip,
                   style: Theme.of(context).textTheme.headline3,
