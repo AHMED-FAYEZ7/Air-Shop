@@ -1,10 +1,8 @@
 import 'dart:async';
-
 import 'package:air_shop/app/functions.dart';
 import 'package:air_shop/domain/usecase/login_usecase.dart';
 import 'package:air_shop/presentation/base/base_viewmodel.dart';
 import 'package:air_shop/presentation/common/freezed_data_classes.dart';
-
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -15,7 +13,7 @@ class LoginViewModel extends BaseViewModel
   StreamController isUserLoggedInSuccessfullyStreamController = StreamController<String>();
   var loginObject = LoginObject("","");
 
-  LoginUseCase? _loginUseCase;
+  LoginUseCase _loginUseCase;
   LoginViewModel(this._loginUseCase);
 
   // inputs
@@ -40,8 +38,8 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async{
-    (await _loginUseCase?.execute(LoginUseCaseInput(loginObject.email, loginObject.password)))
-        ?.fold((failure) => {
+    (await _loginUseCase.execute(LoginUseCaseInput(loginObject.email, loginObject.password)))
+        .fold((failure) => {
           print(failure.message)
     }, (data) => {
       print(data.data?.phone)
@@ -97,10 +95,6 @@ class LoginViewModel extends BaseViewModel
     return _isPasswordValid(loginObject.password) &&
         isEmailValid(loginObject.email);
   }
-
-
-
-
 }
 
 abstract class LoginViewModelInputs {
