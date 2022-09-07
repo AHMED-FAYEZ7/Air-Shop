@@ -21,7 +21,7 @@ class AppStrings {
   static const String forgetPassword = "Forget password";
   static const String registerText = "Not a member ? Sign up";
   static const String loading = "Loading...";
-  static const String retry_again = "Retry Again";
+  static const String retryAgain = "Retry Again";
   static const String ok = "Ok";
   static const String emailHint = 'Email';
   static const String invalidEmail = "Invalid Email";
@@ -45,4 +45,18 @@ class AppStrings {
   static const String contactUs = "Contact Us";
   static const String inviteYourFriends = "Invite Your Friends";
   static const String logout = "Logout";
+
+  // error handler
+  static const String badRequestError = "Bad Request Error";
+  static const String noContent = "No Content";
+  static const String forbiddenError = "Forbidden_Error";
+  static const String unauthorizedError = "Unauthorized Error";
+  static const String notFoundError = "Not Found Error";
+  static const String conflictError = "Conflict Error";
+  static const String internalServerError = "Internal Server Error";
+  static const String unknownError = "Unknown Error";
+  static const String timeoutError = "Timeout Error";
+  static const String defaultError = "Default Error";
+  static const String cacheError = "Cache Error";
+  static const String noInternetError = "No Internet Error";
 }
