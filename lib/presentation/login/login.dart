@@ -69,6 +69,7 @@ class _LoginViewState extends State<LoginView> {
                             prefixIcon: const Icon(
                               IconBroken.User,
                             ),
+                            prefixIconColor: ColorManager.primary,
                             hintText: AppStrings.emailHint,
                             labelText: AppStrings.emailHint,
                             filled: true,
@@ -89,6 +90,7 @@ class _LoginViewState extends State<LoginView> {
                             prefixIcon: const Icon(
                               IconBroken.Lock,
                             ),
+                            prefixIconColor: ColorManager.primary,
                             hintText: AppStrings.password,
                             labelText: AppStrings.password,
                             filled: true,

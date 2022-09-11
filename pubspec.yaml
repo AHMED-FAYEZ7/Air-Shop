@@ -48,6 +48,7 @@ dependencies:
   device_info: ^2.0.3
   freezed: ^2.1.0+1
   get_it: ^7.2.0
+  lottie: ^1.4.2
 
 
 dev_dependencies:
@@ -80,6 +81,11 @@ flutter:
     - assets/images/onboarding_logo1.svg
     - assets/images/onboarding_logo2.svg
     - assets/images/onboarding_logo3.svg
+    - assets/json/error.json
+    - assets/json/loading.json
+    - assets/json/empty.json
+    - assets/json/success.json
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
