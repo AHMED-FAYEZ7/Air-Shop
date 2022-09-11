@@ -3,6 +3,8 @@ import 'package:air_shop/app/functions.dart';
 import 'package:air_shop/domain/usecase/login_usecase.dart';
 import 'package:air_shop/presentation/base/base_viewmodel.dart';
 import 'package:air_shop/presentation/common/freezed_data_classes.dart';
+import 'package:air_shop/presentation/common/state_renderer/state_renderer.dart';
+import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 
 class LoginViewModel extends BaseViewModel
     with LoginViewModelInputs, LoginViewModelOutputs {
@@ -19,7 +21,7 @@ class LoginViewModel extends BaseViewModel
   // inputs
   @override
   void start() {
-    // TODO: implement start
+    inputState.add(ContentState());
   }
 
   @override
@@ -38,11 +40,12 @@ class LoginViewModel extends BaseViewModel
 
   @override
   login() async{
+    inputState.add(LoadingState(stateRendererType: StateRendererType.POPUP_LOADING_STATE));
     (await _loginUseCase.execute(LoginUseCaseInput(loginObject.email, loginObject.password)))
         .fold((failure) => {
-          print(failure.message)
+    inputState.add(ErrorState(StateRendererType.POPUP_ERROR_STATE, failure.message))
     }, (data) => {
-      print(data.data?.phone)
+      inputState.add(ContentState())
     });
   }
 
