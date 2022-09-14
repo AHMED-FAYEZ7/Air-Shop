@@ -1,3 +1,4 @@
+import 'package:air_shop/app/app_prefs.dart';
 import 'package:air_shop/app/di.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:air_shop/presentation/login/login_viewmodel.dart';
@@ -8,6 +9,7 @@ import 'package:air_shop/presentation/resources/routes_manager.dart';
 import 'package:air_shop/presentation/resources/strings_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -18,16 +20,26 @@ class LoginView extends StatefulWidget {
 
 class _LoginViewState extends State<LoginView> {
   final LoginViewModel _viewModel = instance<LoginViewModel>();
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   _bind(){
     _viewModel.start();
-    _emailController.addListener(() => _viewModel.setEmail(_emailController.text));
-    _passwordController.addListener(() => _viewModel.setPassword(_passwordController.text));
-  }
+    _emailController.addListener(()=>_viewModel.setEmail(_emailController.text));
+    _passwordController.addListener(()=>_viewModel.setPassword(_passwordController.text));
 
+    _viewModel.isUserLoggedInSuccessfullyStreamController.stream.listen((token) {
+      // navigate to main
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        _appPreferences.setIsUserLoggedIn();
+        _appPreferences.setToken(token);
+        resetAllModules();
+        Navigator.of(context).pushReplacementNamed(Routes.mainRoute);
+      });
+    });
+  }
   @override
   void initState() {
     _bind();

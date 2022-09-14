@@ -36,6 +36,10 @@ class AppStrings {
   static const String notifications = "Notifications";
   static const String search = "Search";
   static const String settings = "Settings";
+  static const String categories = "Categories";
+  static const String favorites = "Favorites";
+  static const String card = "Card";
+  static const String appName = "Air Shop";
   static const String services = "Services";
   static const String stores = "Stores";
   static const String details = "Details";

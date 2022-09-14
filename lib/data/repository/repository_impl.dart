@@ -41,4 +41,58 @@ class RepositoryImpl extends Repository {
       return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
     }
   }
+
+  @override
+  Future<Either<Failure, CategoriesObject>> getCategories() async {
+    if (await _networkInfo.isConnected) {
+      try{
+        // its safe to call the API
+        final response = await _remoteDataSource.getCategories();
+        if (response.status == ApiInternalStatus.SUCCESS) // success
+            {
+          // return data (success)
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // return biz logic error
+          // return left
+          return Left(Failure(
+              ResponseCode.DEFAULT,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      }catch(error){
+        return (left(ErrorHandler.handle(error).failure));
+      }
+    } else {
+      // return connection error
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
+
+  @override
+  Future<Either<Failure, HomeObject>> getHome() async {
+    if (await _networkInfo.isConnected) {
+      try{
+        // its safe to call the API
+        final response = await _remoteDataSource.getHome();
+        if (response.status == ApiInternalStatus.SUCCESS) // success
+            {
+          // return data (success)
+          // return right
+          return Right(response.toDomain());
+        } else {
+          // return biz logic error
+          // return left
+          return Left(Failure(
+              ResponseCode.DEFAULT,
+              response.message ?? ResponseMessage.DEFAULT));
+        }
+      }catch(error){
+        return (left(ErrorHandler.handle(error).failure));
+      }
+    } else {
+      // return connection error
+      return Left(DataSource.NO_INTERNET_CONNECTION.getFailure());
+    }
+  }
 }

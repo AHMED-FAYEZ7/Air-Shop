@@ -13,4 +13,10 @@ abstract class AppServiceClient{
       @Field("email") String email,
       @Field("password") String password,
       );
+
+  @GET("home")
+  Future<HomeResponse> getHome();
+
+  @GET("categories")
+  Future<CategoriesResponse> getCategories();
 }

@@ -1,4 +1,5 @@
 import 'package:air_shop/presentation/resources/language_manager.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String PREFS_KEY_LANG = "PREFS_KEY_LANG";
@@ -63,7 +64,7 @@ class AppPreferences {
     _sharedPreferences.setBool(PREFS_KEY_IS_USER_LOGGED_IN, true);
   }
 
-  Future<bool> getIsUserLoggedIn() async {
+  Future<bool> isUserLoggedIn() async {
     return _sharedPreferences.getBool(PREFS_KEY_IS_USER_LOGGED_IN) ?? false;
   }
 
