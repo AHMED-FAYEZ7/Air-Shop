@@ -1,3 +1,5 @@
+import 'package:air_shop/app/app_prefs.dart';
+import 'package:air_shop/app/di.dart';
 import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/onboarding/onboarding_viewmodel.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
@@ -17,11 +19,13 @@ class OnBoardingView extends StatefulWidget {
 }
 
 class _OnBoardingViewState extends State<OnBoardingView> {
+  final AppPreferences _appPreferences = instance<AppPreferences>();
   final PageController _pageController = PageController(initialPage: 0);
   final OnBoardingViewModel _viewModel = OnBoardingViewModel();
 
 
   _bind(){
+    _appPreferences.setOnBoardingScreenViewed();
     _viewModel.start();
   }
 
@@ -51,7 +55,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
             actions: [
               TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, Routes.loginRoute);
+                  Navigator.pushReplacementNamed(context, Routes.loginRoute);
                 },
                 child: Text(
                   AppStrings.skip,
@@ -104,7 +108,7 @@ class _OnBoardingViewState extends State<OnBoardingView> {
                     {
                       if(_viewModel.isLast)
                       {
-                        // submit();
+                        Navigator.pushReplacementNamed(context, Routes.loginRoute);
                       }else
                       {
                         _pageController.nextPage(

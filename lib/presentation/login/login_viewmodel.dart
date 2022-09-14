@@ -29,7 +29,7 @@ class LoginViewModel extends BaseViewModel
     _emailStreamController.close();
     _passwordStreamController.close();
     _isAllInputValidStreamController.close();
-    // isUserLoggedInSuccessfullyStreamController.close();
+    isUserLoggedInSuccessfullyStreamController.close();
   }
 
   @override
@@ -44,8 +44,9 @@ class LoginViewModel extends BaseViewModel
     (await _loginUseCase.execute(LoginUseCaseInput(loginObject.email, loginObject.password)))
         .fold((failure) => {
     inputState.add(ErrorState(StateRendererType.POPUP_ERROR_STATE, failure.message))
-    }, (data) => {
-      inputState.add(ContentState())
+    }, (data)  {
+          inputState.add(ContentState());
+          isUserLoggedInSuccessfullyStreamController.add(data.data?.token);
     });
   }
 

@@ -45,3 +45,9 @@ initLoginModule(){
     instance.registerFactory<LoginViewModel>(() => LoginViewModel(instance()));
   }
 }
+
+resetAllModules(){
+  instance.reset(dispose: false);
+  initAppModule();
+  initLoginModule();
+}

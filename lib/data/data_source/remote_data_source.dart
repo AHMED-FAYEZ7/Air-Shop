@@ -4,6 +4,8 @@ import 'package:air_shop/data/response/responses.dart';
 
 abstract class RemoteDataSource{
   Future<AuthenticationResponse> login(LoginRequest loginRequest);
+  Future<HomeResponse> getHome();
+  Future<CategoriesResponse> getCategories();
 }
 
 class RemoteDataSourceImplementer implements RemoteDataSource{
@@ -17,6 +19,16 @@ class RemoteDataSourceImplementer implements RemoteDataSource{
       loginRequest.email,
       loginRequest.password,
     );
+  }
+
+  @override
+  Future<CategoriesResponse> getCategories() async {
+    return await _appServiceClient.getCategories();
+  }
+
+  @override
+  Future<HomeResponse> getHome() async {
+    return await _appServiceClient.getHome();
   }
 
 }
