@@ -63,11 +63,11 @@ class ProductsResponse{
   @JsonKey(name: "id")
   int? id;
   @JsonKey(name: "price")
-  dynamic price;
+  double? price;
   @JsonKey(name: "old_price")
-  dynamic oldPrice;
+  double? oldPrice;
   @JsonKey(name: "discount")
-  dynamic discount;
+  double? discount;
   @JsonKey(name: "image")
   String? image;
   @JsonKey(name: "name")

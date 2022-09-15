@@ -40,7 +40,8 @@ class RouteGenerator
       case Routes.onBoardingRoute:
         return MaterialPageRoute(builder: (_) => OnBoardingView());
       case Routes.mainRoute:
-        // initHomeModule();
+        initHomeModule();
+        initCategoriesModule();
         return MaterialPageRoute(builder: (_) => MainView());
       // case Routes.storeDetailsRoute:
       //   initStoreDetailsModule();
