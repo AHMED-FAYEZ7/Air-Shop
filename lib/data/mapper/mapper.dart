@@ -34,9 +34,9 @@ extension ProductsResponseMapper on ProductsResponse?{
   Products toDomain(){
     return Products(
       this?.id?.orZero() ?? ZERO,
-      this?.price?.orEmptyDynamic() ?? EMPTY,
-      this?.oldPrice?.orEmptyDynamic() ?? EMPTY,
-      this?.discount?.orEmptyDynamic() ?? EMPTY,
+      this?.price?.orDoubleZero() ?? doubleZERO,
+      this?.oldPrice?.orDoubleZero() ?? doubleZERO,
+      this?.discount?.orDoubleZero() ?? doubleZERO,
       this?.image?.orEmpty() ?? EMPTY,
       this?.name?.orEmpty() ?? EMPTY,
       this?.description?.orEmpty() ?? EMPTY,
@@ -51,13 +51,13 @@ extension HomeResponseMapper on HomeResponse? {
   HomeObject toDomain() {
     List<Banners> mappedBanners =
     (this?.data?.banners?.map((banners) => banners.toDomain()) ??
-        Iterable.empty())
+        const Iterable.empty())
         .cast<Banners>()
         .toList();
 
     List<Products> mappedProducts =
     (this?.data?.products?.map((products) => products.toDomain()) ??
-        Iterable.empty())
+        const Iterable.empty())
         .cast<Products>()
         .toList();
 
@@ -80,7 +80,7 @@ extension CategoriesResponseMapper on CategoriesResponse? {
   CategoriesObject toDomain() {
     List<CatData> mappedCatData =
     (this?.data?.catData?.map((catData) => catData.toDomain()) ??
-        Iterable.empty())
+        const Iterable.empty())
         .cast<CatData>()
         .toList();
 

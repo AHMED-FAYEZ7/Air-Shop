@@ -4,7 +4,7 @@ import 'package:air_shop/domain/repository/repository.dart';
 import 'package:air_shop/domain/usecase/base_usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class CategoriesUseCase implements BaseUseCase<void, CategoriesObject> {
+class CategoriesUseCase extends BaseUseCase<void, CategoriesObject> {
   Repository _repository;
 
   CategoriesUseCase(this._repository);

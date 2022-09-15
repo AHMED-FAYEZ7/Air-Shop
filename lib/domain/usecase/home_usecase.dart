@@ -4,7 +4,7 @@ import 'package:air_shop/domain/repository/repository.dart';
 import 'package:air_shop/domain/usecase/base_usecase.dart';
 import 'package:dartz/dartz.dart';
 
-class HomeUseCase implements BaseUseCase<void, HomeObject> {
+class HomeUseCase extends BaseUseCase<void, HomeObject> {
   Repository _repository;
 
   HomeUseCase(this._repository);

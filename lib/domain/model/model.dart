@@ -45,9 +45,9 @@ class Banners{
 
 class Products{
   int id;
-  dynamic price;
-  dynamic oldPrice;
-  dynamic discount;
+  double price;
+  double oldPrice;
+  double discount;
   String image;
   String name;
   String description;

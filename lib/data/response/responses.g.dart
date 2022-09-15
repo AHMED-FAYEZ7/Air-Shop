@@ -69,9 +69,9 @@ Map<String, dynamic> _$BannersResponseToJson(BannersResponse instance) =>
 ProductsResponse _$ProductsResponseFromJson(Map<String, dynamic> json) =>
     ProductsResponse(
       json['id'] as int?,
-      json['price'],
-      json['old_price'],
-      json['discount'],
+      (json['price'] as num?)?.toDouble(),
+      (json['old_price'] as num?)?.toDouble(),
+      (json['discount'] as num?)?.toDouble(),
       json['image'] as String?,
       json['name'] as String?,
       json['description'] as String?,

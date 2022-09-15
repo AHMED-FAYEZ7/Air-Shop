@@ -23,6 +23,18 @@ extension NonNullInt on int?{
   }
 }
 
+// extension on double
+double doubleZERO = 0;
+extension NonNullDouble on double?{
+  double orDoubleZero(){
+    if(this == null){
+      return doubleZERO;
+    }else {
+      return this!;
+    }
+  }
+}
+
 // extension on bool
 bool FALSE = false;
 extension NonNullBool on bool?{
