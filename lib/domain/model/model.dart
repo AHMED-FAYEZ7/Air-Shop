@@ -103,3 +103,104 @@ class CategoriesObject{
 
   CategoriesObject(this.data);
 }
+
+// ------ fav -------------
+class FavProduct{
+  int id;
+  double price;
+  double oldPrice;
+  double discount;
+  String image;
+  String name;
+  String description;
+
+  FavProduct(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description,
+      );
+}
+
+class FavDataList{
+  int id;
+  FavProduct product;
+
+  FavDataList(
+      this.id,
+      this.product,
+      );
+}
+
+class FavData{
+  int currentPage;
+  List<FavDataList> dataList;
+  // String firstPageUrl;
+  // int from;
+  // int lastPage;
+  // String lastPageUrl;
+  // String nextPageUrl;
+  // String path;
+  // int perPage;
+  // String prevPageUrl;
+  // int to;
+  // int total;
+
+  FavData(
+      this.currentPage,
+      this.dataList,
+      // this.firstPageUrl,
+      // this.from,
+      // this.lastPage,
+      // this.lastPageUrl,
+      // this.nextPageUrl,
+      // this.path,
+      // this.perPage,
+      // this.prevPageUrl,
+      // this.to,
+      // this.total,
+      );
+}
+
+class FavObject{
+  FavData data;
+
+  FavObject(this.data);
+}
+
+// ------ change fav -------------
+class ChangeFavoritesProduct{
+  int id;
+  double price;
+  double oldPrice;
+  double discount;
+  String image;
+
+
+  ChangeFavoritesProduct(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      );
+}
+
+class ChangeFavoritesData{
+  int id;
+  ChangeFavoritesProduct product;
+
+  ChangeFavoritesData(
+      this.id,
+      this.product,
+      );
+}
+
+class ChangeFavoritesObject{
+  FavData data;
+
+  ChangeFavoritesObject(this.data);
+}

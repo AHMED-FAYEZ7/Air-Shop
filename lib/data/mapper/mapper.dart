@@ -91,3 +91,43 @@ extension CategoriesResponseMapper on CategoriesResponse? {
     return CategoriesObject(data);
   }
 }
+// -------------------------
+extension FavProductResponseMapper on FavProductsResponse?{
+  FavProduct toDomain(){
+    return FavProduct(
+      this?.id?.orZero() ?? ZERO,
+      this?.price?.orDoubleZero() ?? doubleZERO,
+      this?.oldPrice?.orDoubleZero() ?? doubleZERO,
+      this?.discount?.orDoubleZero() ?? doubleZERO,
+      this?.image?.orEmpty() ?? EMPTY,
+      this?.name?.orEmpty() ?? EMPTY,
+      this?.description?.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension FavDataListResponseMapper on FavDataListResponse?{
+  FavDataList toDomain(){
+    return FavDataList(
+      this?.id?.orZero() ?? ZERO,
+      this?.product?.toDomain() ?? emptyFavProduct(),
+    );
+  }
+}
+
+extension FavResponseMapper on FavResponse? {
+  FavObject toDomain() {
+    List<FavDataList> mappedFavDataList =
+    (this?.data?.dataList?.map((dataList) => dataList.toDomain()) ??
+        const Iterable.empty())
+        .cast<FavDataList>()
+        .toList();
+
+    int mappedCurrentPage =
+    (this?.data?.currentPage?.orZero() ?? ZERO);
+
+    var data = FavData(mappedCurrentPage ,mappedFavDataList);
+    return FavObject(data);
+  }
+}
+
