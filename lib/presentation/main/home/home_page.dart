@@ -191,7 +191,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisSpacing: 0,
             crossAxisSpacing: 0,
             crossAxisCount: 2,
-            childAspectRatio: 1/1.78,
+            childAspectRatio: 1/1.49,
             children: List.generate(
               products.length,
               (index) => Card(
@@ -217,7 +217,7 @@ class _HomePageState extends State<HomePage> {
                               color: Colors.red,
                               padding: const EdgeInsets.symmetric(horizontal: AppPadding.p_8,),
                               child: Text(
-                                'Discount',
+                                AppStrings.discount,
                                 style: TextStyle(
                                   color: ColorManager.white,
                                   fontSize: AppSize.s12,
@@ -241,6 +241,7 @@ class _HomePageState extends State<HomePage> {
                                 color: ColorManager.black
                               ),
                             ),
+                            SizedBox(height: 5,),
                             Row(
                               children: [
                                 Text(

@@ -3,6 +3,7 @@ import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:air_shop/presentation/main/categories/categories_viewmodel.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
+import 'package:air_shop/presentation/resources/icons_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -63,7 +64,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
               borderRadius: BorderRadius.circular(AppSize.s14)
             ),
             height: AppSize.s140,
-
             child: Padding(
               padding: const EdgeInsets.all(AppPadding.p20),
               child: Row(
@@ -76,13 +76,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   const SizedBox(width: AppPadding.p20,),
                   Text(
                     categories[index].name,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: AppPadding.p20,
                       fontWeight: FontWeight.bold,
+                      color: ColorManager.black,
                     ),
                   ),
                   const Spacer(),
-                  const Icon(Icons.arrow_forward_ios,),
+                  const Icon(IconBroken.Arrow___Right_2),
                 ],
               ),
             ),

@@ -1,5 +1,8 @@
 // extension on string
 
+import 'package:air_shop/data/response/responses.dart';
+import 'package:air_shop/domain/model/model.dart';
+
 const String EMPTY = "";
 extension NonNullString on String?{
   String orEmpty(){
@@ -69,3 +72,9 @@ extension NonNullDynamic on dynamic{
     }
   }
 }
+
+// extension on PRODUCT
+emptyFavProduct(){
+  return FavProduct(ZERO, doubleZERO, doubleZERO, doubleZERO, EMPTY, EMPTY, EMPTY);
+}
+

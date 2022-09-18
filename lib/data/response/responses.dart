@@ -82,8 +82,6 @@ class ProductsResponse{
   bool? inCart;
 
 
-
-
   ProductsResponse(
       this.id,
       this.price,
@@ -164,3 +162,165 @@ class CategoriesResponse extends BaseResponse{
   factory CategoriesResponse.fromJson(Map<String ,dynamic> json) => _$CategoriesResponseFromJson(json);
   Map<String ,dynamic> toJson() => _$CategoriesResponseToJson(this);
 }
+// ----------- fav -------------
+@JsonSerializable()
+class FavProductsResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "price")
+  double? price;
+  @JsonKey(name: "old_price")
+  double? oldPrice;
+  @JsonKey(name: "discount")
+  double? discount;
+  @JsonKey(name: "image")
+  String? image;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "description")
+  String? description;
+
+  FavProductsResponse(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description,
+      );
+
+  factory FavProductsResponse.fromJson(Map<String ,dynamic> json) => _$FavProductsResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$FavProductsResponseToJson(this);
+}
+
+@JsonSerializable()
+class FavDataListResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "product")
+  FavProductsResponse? product;
+
+  FavDataListResponse(
+      this.id,
+      this.product,
+      );
+
+  factory FavDataListResponse.fromJson(Map<String ,dynamic> json) => _$FavDataListResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$FavDataListResponseToJson(this);
+}
+
+@JsonSerializable()
+class FavDataResponse{
+  @JsonKey(name: "current_page")
+  int? currentPage;
+  @JsonKey(name: "data")
+  List<FavDataListResponse>? dataList;
+  // @JsonKey(name: "first_page_url")
+  // String? firstPageUrl;
+  // @JsonKey(name: "from")
+  // int? from;
+  // @JsonKey(name: "last_page")
+  // int? lastPage;
+  // @JsonKey(name: "last_page_url")
+  // String? lastPageUrl;
+  // @JsonKey(name: "next_page_url")
+  // String? nextPageUrl;
+  // @JsonKey(name: "path")
+  // String? path;
+  // @JsonKey(name: "per_page")
+  // int? perPage;
+  // @JsonKey(name: "prev_page_url")
+  // String? prevPageUrl;
+  // @JsonKey(name: "to")
+  // int? to;
+  // @JsonKey(name: "total")
+  // int? total;
+
+  FavDataResponse(
+      this.currentPage,
+      this.dataList,
+      // this.firstPageUrl,
+      // this.from,
+      // this.lastPage,
+      // this.lastPageUrl,
+      // this.nextPageUrl,
+      // this.path,
+      // this.perPage,
+      // this.prevPageUrl,
+      // this.to,
+      // this.total,
+      );
+
+  factory FavDataResponse.fromJson(Map<String ,dynamic> json) => _$FavDataResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$FavDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class FavResponse extends BaseResponse{
+  @JsonKey(name: "data")
+  FavDataResponse? data;
+
+  FavResponse(
+      this.data,
+      );
+
+  factory FavResponse.fromJson(Map<String ,dynamic> json) => _$FavResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$FavResponseToJson(this);
+}
+// ---------- change favorites ----------
+@JsonSerializable()
+class ChangeFavoritesProductsResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "price")
+  double? price;
+  @JsonKey(name: "old_price")
+  double? oldPrice;
+  @JsonKey(name: "discount")
+  double? discount;
+  @JsonKey(name: "image")
+  String? image;
+
+  ChangeFavoritesProductsResponse(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      );
+
+  factory ChangeFavoritesProductsResponse.fromJson(Map<String ,dynamic> json) => _$ChangeFavoritesProductsResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$ChangeFavoritesProductsResponseToJson(this);
+}
+
+@JsonSerializable()
+class ChangeFavoritesDataResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "product")
+  ChangeFavoritesProductsResponse? product;
+
+  ChangeFavoritesDataResponse(
+      this.id,
+      this.product,
+      );
+
+  factory ChangeFavoritesDataResponse.fromJson(Map<String ,dynamic> json) => _$ChangeFavoritesDataResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$ChangeFavoritesDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class ChangeFavoritesResponse extends BaseResponse{
+  @JsonKey(name: "data")
+  FavDataResponse? data;
+
+  ChangeFavoritesResponse(
+      this.data,
+      );
+
+  factory ChangeFavoritesResponse.fromJson(Map<String ,dynamic> json) => _$ChangeFavoritesResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$ChangeFavoritesResponseToJson(this);
+}
+
+

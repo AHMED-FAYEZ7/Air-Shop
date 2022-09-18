@@ -19,4 +19,7 @@ abstract class AppServiceClient{
 
   @GET("categories")
   Future<CategoriesResponse> getCategories();
+
+  @GET("favorites")
+  Future<FavResponse> getFavorites();
 }

@@ -7,4 +7,5 @@ abstract class Repository{
   Future<Either<Failure , Authentication>> login(LoginRequest loginRequest);
   Future<Either<Failure , HomeObject>> getHome();
   Future<Either<Failure , CategoriesObject>> getCategories();
+  Future<Either<Failure , FavObject>> getFavorites();
 }

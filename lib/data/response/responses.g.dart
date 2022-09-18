@@ -170,3 +170,126 @@ Map<String, dynamic> _$CategoriesResponseToJson(CategoriesResponse instance) =>
       'message': instance.message,
       'data': instance.data,
     };
+
+FavProductsResponse _$FavProductsResponseFromJson(Map<String, dynamic> json) =>
+    FavProductsResponse(
+      json['id'] as int?,
+      (json['price'] as num?)?.toDouble(),
+      (json['old_price'] as num?)?.toDouble(),
+      (json['discount'] as num?)?.toDouble(),
+      json['image'] as String?,
+      json['name'] as String?,
+      json['description'] as String?,
+    );
+
+Map<String, dynamic> _$FavProductsResponseToJson(
+        FavProductsResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'old_price': instance.oldPrice,
+      'discount': instance.discount,
+      'image': instance.image,
+      'name': instance.name,
+      'description': instance.description,
+    };
+
+FavDataListResponse _$FavDataListResponseFromJson(Map<String, dynamic> json) =>
+    FavDataListResponse(
+      json['id'] as int?,
+      json['product'] == null
+          ? null
+          : FavProductsResponse.fromJson(
+              json['product'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$FavDataListResponseToJson(
+        FavDataListResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'product': instance.product,
+    };
+
+FavDataResponse _$FavDataResponseFromJson(Map<String, dynamic> json) =>
+    FavDataResponse(
+      json['current_page'] as int?,
+      (json['data'] as List<dynamic>?)
+          ?.map((e) => FavDataListResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$FavDataResponseToJson(FavDataResponse instance) =>
+    <String, dynamic>{
+      'current_page': instance.currentPage,
+      'data': instance.dataList,
+    };
+
+FavResponse _$FavResponseFromJson(Map<String, dynamic> json) => FavResponse(
+      json['data'] == null
+          ? null
+          : FavDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+    )
+      ..status = json['status'] as bool?
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$FavResponseToJson(FavResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };
+
+ChangeFavoritesProductsResponse _$ChangeFavoritesProductsResponseFromJson(
+        Map<String, dynamic> json) =>
+    ChangeFavoritesProductsResponse(
+      json['id'] as int?,
+      (json['price'] as num?)?.toDouble(),
+      (json['old_price'] as num?)?.toDouble(),
+      (json['discount'] as num?)?.toDouble(),
+      json['image'] as String?,
+    );
+
+Map<String, dynamic> _$ChangeFavoritesProductsResponseToJson(
+        ChangeFavoritesProductsResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'old_price': instance.oldPrice,
+      'discount': instance.discount,
+      'image': instance.image,
+    };
+
+ChangeFavoritesDataResponse _$ChangeFavoritesDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    ChangeFavoritesDataResponse(
+      json['id'] as int?,
+      json['product'] == null
+          ? null
+          : ChangeFavoritesProductsResponse.fromJson(
+              json['product'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$ChangeFavoritesDataResponseToJson(
+        ChangeFavoritesDataResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'product': instance.product,
+    };
+
+ChangeFavoritesResponse _$ChangeFavoritesResponseFromJson(
+        Map<String, dynamic> json) =>
+    ChangeFavoritesResponse(
+      json['data'] == null
+          ? null
+          : FavDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+    )
+      ..status = json['status'] as bool?
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$ChangeFavoritesResponseToJson(
+        ChangeFavoritesResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };

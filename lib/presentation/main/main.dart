@@ -1,6 +1,6 @@
 import 'package:air_shop/presentation/main/card_page.dart';
 import 'package:air_shop/presentation/main/categories/categories_page.dart';
-import 'package:air_shop/presentation/main/favoraites_page.dart';
+import 'package:air_shop/presentation/main/favorites/favoraites_page.dart';
 import 'package:air_shop/presentation/main/home/home_page.dart';
 import 'package:air_shop/presentation/main/settings_page.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
@@ -97,7 +97,7 @@ class _MainViewState extends State<MainView> {
               inactiveColor: ColorManager.black
           ),
           BottomNavyBarItem(
-              icon: Icon(IconBroken.Chart),
+              icon: Icon(Icons.shopping_cart_outlined),
               title: Text(AppStrings.card),
               activeColor: ColorManager.white,
               inactiveColor: ColorManager.black
