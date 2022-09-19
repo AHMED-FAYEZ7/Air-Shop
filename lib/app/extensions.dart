@@ -78,3 +78,12 @@ emptyFavProduct(){
   return FavProduct(ZERO, doubleZERO, doubleZERO, doubleZERO, EMPTY, EMPTY, EMPTY);
 }
 
+// extension on Change PRODUCT
+emptyChangeFavProduct(){
+  return ChangeFavoritesProduct(ZERO, doubleZERO, doubleZERO, doubleZERO, EMPTY);
+}
+
+// extension on Change PRODUCT data
+emptyChangeFavProductData(){
+  return ChangeFavoritesData(ZERO, emptyChangeFavProduct());
+}

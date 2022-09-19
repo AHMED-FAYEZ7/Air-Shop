@@ -8,4 +8,5 @@ abstract class Repository{
   Future<Either<Failure , HomeObject>> getHome();
   Future<Either<Failure , CategoriesObject>> getCategories();
   Future<Either<Failure , FavObject>> getFavorites();
+  Future<Either<Failure , ChangeFavoritesObject>> changeFavorites(ChangeFavRequest changeFavRequest);
 }

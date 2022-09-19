@@ -43,6 +43,7 @@ class RouteGenerator
         initHomeModule();
         initCategoriesModule();
         initFavoritesModule();
+        initChangeFavoritesModule();
         return MaterialPageRoute(builder: (_) => MainView());
       // case Routes.storeDetailsRoute:
       //   initStoreDetailsModule();

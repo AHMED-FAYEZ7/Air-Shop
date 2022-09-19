@@ -16,13 +16,14 @@ class FavoritesViewModel extends BaseViewModel
   FavoritesViewModel(this._favUseCase);
 
   final StreamController _favoritesStreamController = BehaviorSubject<List<FavDataList>>();
+  final StreamController _changeFavoritesStreamController = BehaviorSubject<void>();
 
   @override
   void start() {
-    _getFavorites();
+    getFavorites();
   }
 
-  _getFavorites() async {
+  getFavorites() async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.FULL_SCREEN_LOADING_STATE));
 
     (await _favUseCase.execute(Void)).fold((failure) {
@@ -33,9 +34,11 @@ class FavoritesViewModel extends BaseViewModel
     });
   }
 
+
   @override
   void dispose() {
     _favoritesStreamController.close();
+    _changeFavoritesStreamController.close();
     super.dispose();
   }
 
@@ -45,6 +48,7 @@ class FavoritesViewModel extends BaseViewModel
   @override
   Stream<List<FavDataList>> get outputFavorites => _favoritesStreamController.stream
         .map((favorites) => favorites);
+
 
 }
 

@@ -2,6 +2,7 @@ import 'package:air_shop/app/di.dart';
 import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:air_shop/presentation/main/favorites/favorites_viewmodel.dart';
+import 'package:air_shop/presentation/main/home/home_viewmodel.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
 import 'package:air_shop/presentation/resources/icons_manager.dart';
 import 'package:air_shop/presentation/resources/strings_manager.dart';
@@ -17,9 +18,11 @@ class FavoritesPage extends StatefulWidget {
 
 class _FavoritesPageState extends State<FavoritesPage> {
   final FavoritesViewModel _viewModel = instance<FavoritesViewModel>();
+  final HomeViewModel _homeViewModel = instance<HomeViewModel>();
 
   _bind(){
     _viewModel.start();
+    _homeViewModel.start();
   }
 
   @override
@@ -127,13 +130,16 @@ class _FavoritesPageState extends State<FavoritesPage> {
                               ),
                             const Spacer(),
                             CircleAvatar(
-                              // backgroundColor: AppCubit.get(context).favorites![model.id]! ? defaultColor: Colors.grey,
+                              backgroundColor: ColorManager.primary,
                               radius: AppSize.s14,
                               child: IconButton(
                                 padding: EdgeInsets.zero,
                                 onPressed: ()
                                 {
-                                  // AppCubit.get(context).changeFavorites(model.id!);
+                                  setState(() {
+                                    _homeViewModel.changeFavorites(favorites[index].product.id);
+                                    _viewModel.getFavorites();
+                                  });
                                 },
                                 icon: Icon(
                                   IconBroken.Heart,
@@ -169,6 +175,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   @override
   void dispose() {
     _viewModel.dispose();
+    _homeViewModel.dispose();
     super.dispose();
   }
 }
