@@ -279,12 +279,16 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 const SizedBox(width: 4,),
                                 CircleAvatar(
-                                  backgroundColor: ColorManager.lightGrey,
+                                  backgroundColor: _viewModel.favorites![products[index].id]! ? ColorManager.primary : ColorManager.lightGrey,
                                   radius: AppSize.s14,
                                   child: IconButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: ()
-                                    {},
+                                    {
+                                      setState(() {
+                                        _viewModel.changeFavorites(products[index].id);
+                                      });
+                                    },
                                     icon: Icon(
                                       IconBroken.Heart,
                                       size: AppSize.s16,

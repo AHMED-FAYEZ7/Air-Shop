@@ -313,7 +313,7 @@ class ChangeFavoritesDataResponse{
 @JsonSerializable()
 class ChangeFavoritesResponse extends BaseResponse{
   @JsonKey(name: "data")
-  FavDataResponse? data;
+  ChangeFavoritesDataResponse? data;
 
   ChangeFavoritesResponse(
       this.data,

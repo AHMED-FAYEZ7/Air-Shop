@@ -130,4 +130,34 @@ extension FavResponseMapper on FavResponse? {
     return FavObject(data);
   }
 }
+// -------------------------
+extension ChangeFavoritesProductsResponseMapper on ChangeFavoritesProductsResponse?{
+  ChangeFavoritesProduct toDomain(){
+    return ChangeFavoritesProduct(
+      this?.id?.orZero() ?? ZERO,
+      this?.price?.orDoubleZero() ?? doubleZERO,
+      this?.oldPrice?.orDoubleZero() ?? doubleZERO,
+      this?.discount?.orDoubleZero() ?? doubleZERO,
+      this?.image?.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ChangeFavoritesDataResponseMapper on ChangeFavoritesDataResponse?{
+  ChangeFavoritesData toDomain(){
+    return ChangeFavoritesData(
+      this?.id?.orZero() ?? ZERO,
+      this?.product?.toDomain() ?? emptyChangeFavProduct(),
+    );
+  }
+}
+
+extension ChangeFavoritesResponseMapper on ChangeFavoritesResponse? {
+  ChangeFavoritesObject toDomain(){
+    return ChangeFavoritesObject(
+      this?.data?.toDomain() ?? emptyChangeFavProductData(),
+    );
+  }
+}
+
 

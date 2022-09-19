@@ -4,3 +4,9 @@ class LoginRequest{
 
   LoginRequest(this.email,this.password);
 }
+
+class ChangeFavRequest{
+  int productId;
+
+  ChangeFavRequest(this.productId);
+}

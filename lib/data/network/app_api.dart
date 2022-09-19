@@ -22,4 +22,9 @@ abstract class AppServiceClient{
 
   @GET("favorites")
   Future<FavResponse> getFavorites();
+
+  @POST("favorites")
+  Future<ChangeFavoritesResponse> changeFavorites(
+      @Field("product_id") int productId,
+      );
 }

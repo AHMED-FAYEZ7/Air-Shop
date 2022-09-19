@@ -6,6 +6,7 @@ import 'package:air_shop/data/network/natwork_info.dart';
 import 'package:air_shop/data/repository/repository_impl.dart';
 import 'package:air_shop/domain/repository/repository.dart';
 import 'package:air_shop/domain/usecase/categories_usecase.dart';
+import 'package:air_shop/domain/usecase/change_favorites_usecase.dart';
 import 'package:air_shop/domain/usecase/home_usecase.dart';
 import 'package:air_shop/domain/usecase/login_usecase.dart';
 import 'package:air_shop/presentation/login/login_viewmodel.dart';
@@ -56,7 +57,7 @@ initLoginModule(){
 initHomeModule(){
   if(!GetIt.I.isRegistered<HomeUseCase>()){
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
-    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance(),instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance(),instance(),instance()));
   }
 }
 
@@ -74,6 +75,12 @@ initFavoritesModule(){
   }
 }
 
+initChangeFavoritesModule(){
+  if(!GetIt.I.isRegistered<ChaneFavoritesUseCase>()){
+    instance.registerFactory<ChaneFavoritesUseCase>(() => ChaneFavoritesUseCase(instance()));
+  }
+}
+
 resetAllModules(){
   instance.reset(dispose: false);
   initAppModule();
@@ -81,4 +88,5 @@ resetAllModules(){
   initHomeModule();
   initCategoriesModule();
   initFavoritesModule();
+  initChangeFavoritesModule();
 }

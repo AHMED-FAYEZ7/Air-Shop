@@ -281,7 +281,8 @@ ChangeFavoritesResponse _$ChangeFavoritesResponseFromJson(
     ChangeFavoritesResponse(
       json['data'] == null
           ? null
-          : FavDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+          : ChangeFavoritesDataResponse.fromJson(
+              json['data'] as Map<String, dynamic>),
     )
       ..status = json['status'] as bool?
       ..message = json['message'] as String?;
