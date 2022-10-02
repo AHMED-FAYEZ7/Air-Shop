@@ -22,7 +22,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   _bind(){
     _viewModel.start();
-    _homeViewModel.start();
+    // _homeViewModel.start();
   }
 
   @override
@@ -164,7 +164,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
           width: AppSize.inf,
         ),
         itemCount: favorites.length,
-        // itemCount: AppCubit.get(context).favoritesModel!.data!.data!.length,
       );
     } else {
       return Container();
