@@ -16,7 +16,6 @@ class FavoritesViewModel extends BaseViewModel
   FavoritesViewModel(this._favUseCase);
 
   final StreamController _favoritesStreamController = BehaviorSubject<List<FavDataList>>();
-  final StreamController _changeFavoritesStreamController = BehaviorSubject<void>();
 
   @override
   void start() {
@@ -38,7 +37,6 @@ class FavoritesViewModel extends BaseViewModel
   @override
   void dispose() {
     _favoritesStreamController.close();
-    _changeFavoritesStreamController.close();
     super.dispose();
   }
 

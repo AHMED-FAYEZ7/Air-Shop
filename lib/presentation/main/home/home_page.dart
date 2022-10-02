@@ -271,7 +271,7 @@ class _HomePageState extends State<HomePage> {
                                     onPressed: ()
                                     {},
                                     icon: Icon(
-                                      Icons.shopping_cart,
+                                      Icons.shopping_cart_outlined,
                                       size: AppSize.s16,
                                       color: ColorManager.white,
                                     ),
@@ -279,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 const SizedBox(width: 4,),
                                 CircleAvatar(
-                                  backgroundColor: _viewModel.favorites![products[index].id]! ? ColorManager.primary : ColorManager.lightGrey,
+                                  backgroundColor: _viewModel.favorites[products[index].id]! ? ColorManager.primary :ColorManager.lightGrey,
                                   radius: AppSize.s14,
                                   child: IconButton(
                                     padding: EdgeInsets.zero,

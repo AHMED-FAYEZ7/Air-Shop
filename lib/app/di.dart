@@ -11,6 +11,7 @@ import 'package:air_shop/domain/usecase/home_usecase.dart';
 import 'package:air_shop/domain/usecase/login_usecase.dart';
 import 'package:air_shop/presentation/login/login_viewmodel.dart';
 import 'package:air_shop/presentation/main/categories/categories_viewmodel.dart';
+import 'package:air_shop/presentation/main/favorites/favorites_cubit/cubit.dart';
 import 'package:air_shop/presentation/main/home/home_viewmodel.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
@@ -71,7 +72,7 @@ initCategoriesModule(){
 initFavoritesModule(){
   if(!GetIt.I.isRegistered<FavUseCase>()){
     instance.registerFactory<FavUseCase>(() => FavUseCase(instance()));
-    instance.registerFactory<FavoritesViewModel>(() => FavoritesViewModel(instance()));
+    instance.registerFactory<FavoritesCubit>(() => FavoritesCubit(instance()));
   }
 }
 

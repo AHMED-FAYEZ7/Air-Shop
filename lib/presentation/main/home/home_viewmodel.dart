@@ -19,7 +19,7 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs,HomeViewModel
   final StreamController _bannersStreamController = BehaviorSubject<List<Banners>>();
   final StreamController _productsStreamController = BehaviorSubject<List<Products>>();
   final StreamController _categoriesStreamController = BehaviorSubject<List<CatData>>();
-  Map<int , bool>? favorites = {};
+  late Map<int , bool> favorites = {};
 
   HomeViewModel(this._homeUseCase,this._categoriesUseCase,this._changeFavoritesUseCase);
 
@@ -39,7 +39,7 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs,HomeViewModel
       inputBanners.add(homeObject.data.banners);
       inputProducts.add(homeObject.data.products);
       for (var element in homeObject.data.products) {
-        favorites!.addAll({
+        favorites.addAll({
           element.id : element.inFavorites,
         });
       }
@@ -82,10 +82,16 @@ class HomeViewModel extends BaseViewModel with HomeViewModelInputs,HomeViewModel
 
   @override
   void changeFavorites(int productId) async{
-    favorites![productId] = !favorites![productId]!;
+    if(favorites[productId] = true){
+        favorites[productId] = false;
+    }else{
+      favorites[productId] = true;
+    }
     (await _changeFavoritesUseCase.execute(ChangeFavoritesUseCaseInput(productId)))
         .fold((failure) {
-    }, (changeFavoritesObject) {});
+    }, (changeFavoritesObject) {
+
+    });
   }
 
 

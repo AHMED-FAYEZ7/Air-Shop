@@ -39,10 +39,10 @@ class StateRenderer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _getStateWidget(context);
+    return getStateWidget(context);
   }
 
-  Widget _getStateWidget(BuildContext context) {
+  Widget getStateWidget(BuildContext context) {
     switch (stateRendererType) {
       case StateRendererType.POPUP_LOADING_STATE:
         return _getPopUpDialog(
