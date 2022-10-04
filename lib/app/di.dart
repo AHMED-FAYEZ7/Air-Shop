@@ -10,15 +10,14 @@ import 'package:air_shop/domain/usecase/change_favorites_usecase.dart';
 import 'package:air_shop/domain/usecase/home_usecase.dart';
 import 'package:air_shop/domain/usecase/login_usecase.dart';
 import 'package:air_shop/presentation/login/login_viewmodel.dart';
-import 'package:air_shop/presentation/main/categories/categories_viewmodel.dart';
-import 'package:air_shop/presentation/main/favorites/favorites_cubit/cubit.dart';
+import 'package:air_shop/presentation/main/categories/categoriesVM.dart';
+import 'package:air_shop/presentation/main/favorites/favorites_viewmodel.dart';
 import 'package:air_shop/presentation/main/home/home_viewmodel.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../domain/usecase/fav_usecase.dart';
-import '../presentation/main/favorites/favorites_viewmodel.dart';
 
 final instance = GetIt.instance;
 
@@ -65,14 +64,14 @@ initHomeModule(){
 initCategoriesModule(){
   if(!GetIt.I.isRegistered<CategoriesUseCase>()){
     instance.registerFactory<CategoriesUseCase>(() => CategoriesUseCase(instance()));
-    instance.registerFactory<CategoriesViewModel>(() => CategoriesViewModel(instance()));
+    instance.registerFactory<CategoriesVM>(() => CategoriesVM(instance()));
   }
 }
 
 initFavoritesModule(){
   if(!GetIt.I.isRegistered<FavUseCase>()){
     instance.registerFactory<FavUseCase>(() => FavUseCase(instance()));
-    instance.registerFactory<FavoritesCubit>(() => FavoritesCubit(instance()));
+    instance.registerFactory<FavoritesViewModel>(() => FavoritesViewModel(instance()));
   }
 }
 

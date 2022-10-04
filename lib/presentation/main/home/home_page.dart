@@ -53,40 +53,31 @@ class _HomePageState extends State<HomePage> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _getBannersCarousel(),
+        _getBannersCarousel(_viewModel.banners),
         _getSection(AppStrings.categories),
-        _getCategories(),
+        _getCategories(_viewModel.categories),
         _getSection(AppStrings.products),
-        _getProducts(),
+        _getProducts(_viewModel.products),
       ],
     );
   }
 
-  Widget _getBannersCarousel(){
-    return StreamBuilder<List<Banners>>(
-      stream: _viewModel.outputBanners,
-      builder: (context,snapshot){
-        return _getBanner(snapshot.data);
-      },
-    );
-  }
-
-  Widget _getBanner(List<Banners>? banners) {
+  Widget _getBannersCarousel(List<Banners>? banners){
     if (banners != null) {
       return CarouselSlider(
           items: banners
-              .map((banner) => SizedBox(
+              .map((banners) => SizedBox(
             width: double.infinity,
             child: Card(
               elevation: AppSize.s1_5,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSize.s12),
-                  // side: BorderSide(color: ColorManager.white, width: AppSize.s1_5),
+                borderRadius: BorderRadius.circular(AppSize.s12),
+                // side: BorderSide(color: ColorManager.white, width: AppSize.s1_5),
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(AppSize.s12),
                 child: Image.network(
-                  banner.image,
+                  banners.image,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -117,69 +108,51 @@ class _HomePageState extends State<HomePage> {
     );
   }
   
-  Widget _getCategories(){
-    return StreamBuilder<List<CatData>>(
-      stream: _viewModel.outputCategorise,
-      builder: (context,snapshot){
-        return _getCategoriseWidget(snapshot.data);
-      },
-    );
-  }
-
-  Widget _getCategoriseWidget(List<CatData>? categorise) {
+  Widget _getCategories(List<CatData>? categorise){
     if (categorise != null) {
       return SizedBox(
         height: AppSize.s110,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            itemBuilder: (context , index) =>
-                Card(
-                  elevation: AppSize.s1_5,
-                  child: Stack(
-                    alignment: AlignmentDirectional.bottomCenter,
-                    children: [
-                      Image.network(
-                        categorise[index].image,
-                        height: AppSize.s100,
-                        width: AppSize.s100,
-                        fit: BoxFit.cover,
-                      ),
-                      Container(
-                        width: 100,
-                        color: Colors.black.withOpacity(AppSize.s_8,),
-                        child: Text(
-                          categorise[index].name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: Colors.white,
-                          ),
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (context , index) =>
+              Card(
+                elevation: AppSize.s1_5,
+                child: Stack(
+                  alignment: AlignmentDirectional.bottomCenter,
+                  children: [
+                    Image.network(
+                      categorise[index].image,
+                      height: AppSize.s100,
+                      width: AppSize.s100,
+                      fit: BoxFit.cover,
+                    ),
+                    Container(
+                      width: 100,
+                      color: Colors.black.withOpacity(AppSize.s_8,),
+                      child: Text(
+                        categorise[index].name,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          color: Colors.white,
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-            separatorBuilder: (context , index) => const SizedBox(width: AppSize.s_8,),
-            itemCount: categorise.length,
+              ),
+          separatorBuilder: (context , index) => const SizedBox(width: AppSize.s_8,),
+          itemCount: categorise.length,
         ),
       );
     } else {
       return Container();
     }
   }
-  
-  Widget _getProducts(){
-    return StreamBuilder<List<Products>>(
-      stream: _viewModel.outputProducts,
-      builder: (context,snapshot){
-        return _getProductsWidget(snapshot.data);
-      },
-    );
-  }
 
-  Widget _getProductsWidget(List<Products>? products){
+  Widget _getProducts(List<Products>? products){
     if(products != null){
       return Container(
         color: ColorManager.whiteOpacity70,
@@ -194,7 +167,7 @@ class _HomePageState extends State<HomePage> {
             childAspectRatio: 1/1.49,
             children: List.generate(
               products.length,
-              (index) => Card(
+                  (index) => Card(
                 elevation: AppSize.s6,
                 child: Container(
                   decoration: BoxDecoration(
@@ -236,9 +209,9 @@ class _HomePageState extends State<HomePage> {
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
-                                fontSize: AppSize.s14,
-                                height: 1.3,
-                                color: ColorManager.black
+                                  fontSize: AppSize.s14,
+                                  height: 1.3,
+                                  color: ColorManager.black
                               ),
                             ),
                             SizedBox(height: 5,),
