@@ -1,5 +1,4 @@
 import 'package:air_shop/app/di.dart';
-import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:air_shop/presentation/main/favorites/favorites_viewmodel.dart';
 import 'package:air_shop/presentation/main/home/home_viewmodel.dart';
@@ -22,7 +21,6 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   _bind(){
     _viewModel.start();
-    // _homeViewModel.start();
   }
 
   @override
@@ -47,16 +45,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
   }
 
   Widget _getContentWidget(){
-    return StreamBuilder<List<FavDataList>>(
-      stream: _viewModel.outputFavorites,
-      builder: (context,snapshot){
-        return _getFavorites(snapshot.data);
-      },
-    );
-  }
-
-  Widget _getFavorites(List<FavDataList>? favorites) {
-    if (favorites != null) {
+    if (_viewModel.favorites != null) {
       return ListView.separated(
         scrollDirection: Axis.vertical,
         physics: const BouncingScrollPhysics(),
@@ -72,12 +61,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     alignment: AlignmentDirectional.bottomStart,
                     children: [
                       Image(
-                        image: NetworkImage(favorites[index].product.image),
+                        image: NetworkImage(_viewModel.favorites![index].product.image),
                         height: AppSize.s120,
                         width: AppSize.s120,
                         fit: BoxFit.contain,
                       ),
-                      if(favorites[index].product.discount != 0)
+                      if(_viewModel.favorites![index].product.discount != 0)
                         Container(
                           color: Colors.red,
                           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p_8,),
@@ -98,29 +87,29 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       children: [
                         const SizedBox(width: 20,),
                         Text(
-                          favorites[index].product.name,
+                          _viewModel.favorites![index].product.name,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
-                            fontSize: AppSize.s14,
-                            height: 1.3,
-                            color: ColorManager.black
+                              fontSize: AppSize.s14,
+                              height: 1.3,
+                              color: ColorManager.black
                           ),
                         ),
                         const Spacer(),
                         Row(
                           children: [
                             Text(
-                              favorites[index].product.price.toString(),
+                              _viewModel.favorites![index].product.price.toString(),
                               style: TextStyle(
-                                fontSize: AppSize.s14,
+                                  fontSize: AppSize.s14,
                                   color: ColorManager.black
                               ),
                             ),
                             const SizedBox(width: 10,),
-                            if(favorites[index].product.discount != 0)
+                            if(_viewModel.favorites![index].product.discount != 0)
                               Text(
-                                favorites[index].product.oldPrice.toString(),
+                                _viewModel.favorites![index].product.oldPrice.toString(),
                                 maxLines: 2,
                                 style: const TextStyle(
                                   fontSize: AppSize.s12,
@@ -136,10 +125,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                 padding: EdgeInsets.zero,
                                 onPressed: ()
                                 {
-                                  setState(() {
-                                    _homeViewModel.changeFavorites(favorites[index].product.id);
-                                    _viewModel.getFavorites();
-                                  });
+                                  // setState(() {
+                                  //   _homeViewModel.changeFavorites(_viewModel.favorites![index].product.id);
+                                  //   _viewModel.getFavorites();
+                                  // });
                                 },
                                 icon: Icon(
                                   IconBroken.Heart,
@@ -163,13 +152,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
           color: ColorManager.whiteOpacity70,
           width: AppSize.inf,
         ),
-        itemCount: favorites.length,
+        itemCount: _viewModel.favorites!.length,
       );
     } else {
       return Container();
     }
   }
-
 
   @override
   void dispose() {

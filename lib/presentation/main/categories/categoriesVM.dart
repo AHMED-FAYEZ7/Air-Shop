@@ -1,33 +1,31 @@
 import 'dart:ffi';
 
 import 'package:air_shop/domain/model/model.dart';
-import 'package:air_shop/domain/usecase/fav_usecase.dart';
+import 'package:air_shop/domain/usecase/categories_usecase.dart';
 import 'package:air_shop/presentation/base/base_viewmodel.dart';
+import 'package:air_shop/presentation/common/state_renderer/state_renderer.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 
-import '../../common/state_renderer/state_renderer.dart';
+class CategoriesVM extends BaseViewModel {
 
-class FavoritesViewModel extends BaseViewModel {
-  final FavUseCase _favUseCase;
-  List<FavDataList>? favorites =[];
+  final CategoriesUseCase _categoriesUseCase;
+  List<CatData>? categories =[];
 
-  FavoritesViewModel(this._favUseCase);
-
+  CategoriesVM(this._categoriesUseCase);
 
   @override
   void start() {
-    _getFavorites();
+    _getCategories();
   }
 
-  _getFavorites() async {
+  _getCategories() async {
     inputState.add(LoadingState(stateRendererType: StateRendererType.FULL_SCREEN_LOADING_STATE));
-    (await _favUseCase.execute(Void)).fold((failure) {
+    (await _categoriesUseCase.execute(Void)).fold((failure) {
       inputState.add(ErrorState(StateRendererType.FULL_SCREEN_ERROR_STATE, failure.message));
-    }, (favoritesObject) {
+    }, (categoriesObject) {
       inputState.add(ContentState());
-      favorites = favoritesObject.data.dataList;
+      categories = categoriesObject.data.catData;
     });
   }
-
 }
 

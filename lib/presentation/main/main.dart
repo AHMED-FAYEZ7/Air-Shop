@@ -1,5 +1,6 @@
 import 'package:air_shop/presentation/main/card_page.dart';
-import 'package:air_shop/presentation/main/categories/categories_page.dart';
+import 'package:air_shop/presentation/main/categories/cat_page.dart';
+import 'package:air_shop/presentation/main/favorites/favoraites_page.dart';
 import 'package:air_shop/presentation/main/home/home_page.dart';
 import 'package:air_shop/presentation/main/settings_page.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
@@ -8,9 +9,6 @@ import 'package:air_shop/presentation/resources/strings_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-
-import 'favorites/favorites_page.dart';
-
 class MainView extends StatefulWidget {
   const MainView({Key? key}) : super(key: key);
 

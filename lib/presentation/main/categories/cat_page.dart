@@ -1,7 +1,7 @@
 import 'package:air_shop/app/di.dart';
 import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
-import 'package:air_shop/presentation/main/categories/categories_viewmodel.dart';
+import 'package:air_shop/presentation/main/categories/categoriesVM.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
 import 'package:air_shop/presentation/resources/icons_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
@@ -15,7 +15,7 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  final CategoriesViewModel _viewModel = instance<CategoriesViewModel>();
+  final CategoriesVM _viewModel = instance<CategoriesVM>();
 
   _bind(){
     _viewModel.start();
@@ -43,16 +43,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
   }
 
   Widget _getContentWidget(){
-    return StreamBuilder<List<CatData>>(
-      stream: _viewModel.outputCategories,
-      builder: (context,snapshot){
-        return _getCategories(snapshot.data);
-      },
-    );
-  }
-
-  Widget _getCategories(List<CatData>? categories) {
-    if (categories != null) {
+    if (_viewModel.categories != null) {
       return ListView.separated(
         scrollDirection: Axis.vertical,
         physics: const BouncingScrollPhysics(),
@@ -61,7 +52,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           child: Container(
             decoration: BoxDecoration(
                 color: ColorManager.white,
-              borderRadius: BorderRadius.circular(AppSize.s14)
+                borderRadius: BorderRadius.circular(AppSize.s14)
             ),
             height: AppSize.s140,
             child: Padding(
@@ -69,13 +60,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
               child: Row(
                 children: [
                   Image(
-                    image: NetworkImage(categories[index].image),
+                    image: NetworkImage(_viewModel.categories![index].image),
                     height: AppSize.s100,
                     width: AppSize.s100,
                   ),
                   const SizedBox(width: AppPadding.p20,),
                   Text(
-                    categories[index].name,
+                    _viewModel.categories![index].name,
                     style: TextStyle(
                       fontSize: AppPadding.p20,
                       fontWeight: FontWeight.bold,
@@ -94,7 +85,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
           color: ColorManager.whiteOpacity70,
           width: AppSize.inf,
         ),
-        itemCount: categories.length,
+        itemCount: _viewModel.categories!.length,
       );
     } else {
       return Container();
