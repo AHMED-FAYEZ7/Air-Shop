@@ -6,7 +6,6 @@ import 'package:air_shop/presentation/resources/color_manager.dart';
 import 'package:air_shop/presentation/resources/strings_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../resources/icons_manager.dart';
@@ -214,7 +213,7 @@ class _HomePageState extends State<HomePage> {
                                   color: ColorManager.black
                               ),
                             ),
-                            SizedBox(height: 5,),
+                            const SizedBox(height: 5,),
                             Row(
                               children: [
                                 Text(
@@ -252,7 +251,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 const SizedBox(width: 4,),
                                 CircleAvatar(
-                                  backgroundColor: _viewModel.favorites[products[index].id]! ? ColorManager.primary :ColorManager.lightGrey,
+                                  backgroundColor: _viewModel.favorites![products[index].id]! ? ColorManager.primary :ColorManager.lightGrey,
                                   radius: AppSize.s14,
                                   child: IconButton(
                                     padding: EdgeInsets.zero,

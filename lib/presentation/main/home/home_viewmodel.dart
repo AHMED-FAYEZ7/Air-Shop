@@ -17,7 +17,7 @@ class HomeViewModel extends BaseViewModel{
   List<Products>? products =[];
   List<CatData>? categories =[];
 
-  late Map<int , bool> favorites = {};
+  late Map<int , bool>? favorites = {};
 
   HomeViewModel(this._homeUseCase,this._categoriesUseCase,this._changeFavoritesUseCase);
 
@@ -37,7 +37,7 @@ class HomeViewModel extends BaseViewModel{
       banners = homeObject.data.banners;
       products= homeObject.data.products;
       for (var element in homeObject.data.products) {
-        favorites.addAll({
+        favorites!.addAll({
           element.id : element.inFavorites,
         });
       }
@@ -52,16 +52,13 @@ class HomeViewModel extends BaseViewModel{
 
   }
 
-  @override
   void changeFavorites(int productId) async{
-    if(favorites[productId] = true){
-        favorites[productId] = false;
-    }else{
-      favorites[productId] = true;
-    }
+    favorites![productId] = !favorites![productId]!;
     (await _changeFavoritesUseCase.execute(ChangeFavoritesUseCaseInput(productId)))
         .fold((failure) {
+      // favorites![productId] = !favorites![productId]!;
     }, (changeFavoritesObject) {
+      // favorites![productId] = !favorites![productId]!;
 
     });
   }
