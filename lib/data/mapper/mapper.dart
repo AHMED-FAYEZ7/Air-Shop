@@ -159,5 +159,42 @@ extension ChangeFavoritesResponseMapper on ChangeFavoritesResponse? {
     );
   }
 }
+// -------------------------
+extension CartProductResponseMapper on CartProductsResponse?{
+  CartProduct toDomain(){
+    return CartProduct(
+      this?.id?.orZero() ?? ZERO,
+      this?.price?.orDoubleZero() ?? doubleZERO,
+      this?.oldPrice?.orDoubleZero() ?? doubleZERO,
+      this?.discount?.orDoubleZero() ?? doubleZERO,
+      this?.image?.orEmpty() ?? EMPTY,
+      this?.name?.orEmpty() ?? EMPTY,
+      this?.description?.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension CartItemResponseMapper on CartItemResponse?{
+  CartItem toDomain(){
+    return CartItem(
+      this?.id?.orZero() ?? ZERO,
+      this?.quantity?.orZero() ?? ZERO,
+      this?.product?.toDomain() ?? emptyCartProduct(),
+    );
+  }
+}
+
+extension CartResponseMapper on CartResponse? {
+  CartObject toDomain() {
+    List<CartItem> mappedCartDataList =
+    (this?.data?.cartItems?.map((cartItem) => cartItem.toDomain()) ??
+        const Iterable.empty())
+        .cast<CartItem>()
+        .toList();
+
+    var data = CartData(mappedCartDataList);
+    return CartObject(data);
+  }
+}
 
 
