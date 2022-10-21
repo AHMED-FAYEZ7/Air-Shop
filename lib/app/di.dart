@@ -5,11 +5,13 @@ import 'package:air_shop/data/network/dio_factory.dart';
 import 'package:air_shop/data/network/natwork_info.dart';
 import 'package:air_shop/data/repository/repository_impl.dart';
 import 'package:air_shop/domain/repository/repository.dart';
+import 'package:air_shop/domain/usecase/cart_usecase.dart';
 import 'package:air_shop/domain/usecase/categories_usecase.dart';
 import 'package:air_shop/domain/usecase/change_favorites_usecase.dart';
 import 'package:air_shop/domain/usecase/home_usecase.dart';
 import 'package:air_shop/domain/usecase/login_usecase.dart';
 import 'package:air_shop/presentation/login/login_viewmodel.dart';
+import 'package:air_shop/presentation/main/cart/cart_vm.dart';
 import 'package:air_shop/presentation/main/categories/categoriesVM.dart';
 import 'package:air_shop/presentation/main/favorites/favorites_viewmodel.dart';
 import 'package:air_shop/presentation/main/home/home_viewmodel.dart';
@@ -81,6 +83,13 @@ initChangeFavoritesModule(){
   }
 }
 
+initCartsModule(){
+  if(!GetIt.I.isRegistered<CartUseCase>()){
+    instance.registerFactory<CartUseCase>(() => CartUseCase(instance()));
+    instance.registerFactory<CartsViewModel>(() => CartsViewModel(instance()));
+  }
+}
+
 resetAllModules(){
   instance.reset(dispose: false);
   initAppModule();
@@ -89,4 +98,5 @@ resetAllModules(){
   initCategoriesModule();
   initFavoritesModule();
   initChangeFavoritesModule();
+  initCartsModule();
 }
