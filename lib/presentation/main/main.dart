@@ -22,7 +22,7 @@ class _MainViewState extends State<MainView> {
     HomePage(),
     CategoriesPage(),
     FavoritesPage(),
-    CardPage(),
+    CartPage(),
     SettingsPage(),
   ];
 

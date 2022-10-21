@@ -7,11 +7,11 @@ import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.
 
 import '../../common/state_renderer/state_renderer.dart';
 
-class FavoritesViewModel extends BaseViewModel {
+class CartsViewModel extends BaseViewModel {
   final CartUseCase _cartUseCase;
   List<CartItem>? carts =[];
 
-  FavoritesViewModel(this._cartUseCase);
+  CartsViewModel(this._cartUseCase);
 
 
   @override

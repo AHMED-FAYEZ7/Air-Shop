@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class CardPage extends StatefulWidget {
-  const CardPage({Key? key}) : super(key: key);
+class CartPage extends StatefulWidget {
+  const CartPage({Key? key}) : super(key: key);
 
   @override
-  _CardPageState createState() => _CardPageState();
+  _CartPageState createState() => _CartPageState();
 }
 
-class _CardPageState extends State<CardPage> {
+class _CartPageState extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return const Text("Card");
