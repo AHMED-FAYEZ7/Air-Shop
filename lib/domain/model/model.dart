@@ -204,3 +204,50 @@ class ChangeFavoritesObject{
 
   ChangeFavoritesObject(this.data);
 }
+
+// ------ cart -------------
+class CartProduct{
+  int id;
+  double price;
+  double oldPrice;
+  double discount;
+  String image;
+  String name;
+  String description;
+
+  CartProduct(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description,
+      );
+}
+
+class CartItem{
+  int id;
+  int quantity;
+  CartProduct product;
+
+  CartItem(
+      this.id,
+      this.quantity,
+      this.product,
+      );
+}
+
+class CartData{
+  List<CartItem> cartItems;
+
+  CartData(
+      this.cartItems,
+      );
+}
+
+class CartObject{
+  CartData data;
+
+  CartObject(this.data);
+}
