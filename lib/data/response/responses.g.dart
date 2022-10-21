@@ -294,3 +294,71 @@ Map<String, dynamic> _$ChangeFavoritesResponseToJson(
       'message': instance.message,
       'data': instance.data,
     };
+
+CartProductsResponse _$CartProductsResponseFromJson(
+        Map<String, dynamic> json) =>
+    CartProductsResponse(
+      json['id'] as int?,
+      (json['price'] as num?)?.toDouble(),
+      (json['old_price'] as num?)?.toDouble(),
+      (json['discount'] as num?)?.toDouble(),
+      json['image'] as String?,
+      json['name'] as String?,
+      json['description'] as String?,
+    );
+
+Map<String, dynamic> _$CartProductsResponseToJson(
+        CartProductsResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'price': instance.price,
+      'old_price': instance.oldPrice,
+      'discount': instance.discount,
+      'image': instance.image,
+      'name': instance.name,
+      'description': instance.description,
+    };
+
+CartItemResponse _$CartItemResponseFromJson(Map<String, dynamic> json) =>
+    CartItemResponse(
+      json['id'] as int?,
+      json['quantity'] as int?,
+      json['product'] == null
+          ? null
+          : CartProductsResponse.fromJson(
+              json['product'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$CartItemResponseToJson(CartItemResponse instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'quantity': instance.quantity,
+      'product': instance.product,
+    };
+
+CartDataResponse _$CartDataResponseFromJson(Map<String, dynamic> json) =>
+    CartDataResponse(
+      (json['cart_items'] as List<dynamic>?)
+          ?.map((e) => CartItemResponse.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$CartDataResponseToJson(CartDataResponse instance) =>
+    <String, dynamic>{
+      'cart_items': instance.cartItems,
+    };
+
+CartResponse _$CartResponseFromJson(Map<String, dynamic> json) => CartResponse(
+      json['data'] == null
+          ? null
+          : CartDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+    )
+      ..status = json['status'] as bool?
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$CartResponseToJson(CartResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };

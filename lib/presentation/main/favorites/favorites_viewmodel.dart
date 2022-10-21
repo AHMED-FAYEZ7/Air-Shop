@@ -26,6 +26,11 @@ class FavoritesViewModel extends BaseViewModel {
     }, (favoritesObject) {
       inputState.add(ContentState());
       favorites = favoritesObject.data.dataList;
+      // for (var element in favoritesObject.data.dataList) {
+      //   favorites.addAll({
+      //     element.product.id : element.product.inFavorites,
+      //   });
+      // }
     });
   }
 

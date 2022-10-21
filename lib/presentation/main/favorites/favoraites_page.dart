@@ -1,4 +1,5 @@
 import 'package:air_shop/app/di.dart';
+import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:air_shop/presentation/main/favorites/favorites_viewmodel.dart';
 import 'package:air_shop/presentation/main/home/home_viewmodel.dart';
@@ -21,6 +22,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
 
   _bind(){
     _viewModel.start();
+    _homeViewModel.start();
   }
 
   @override
@@ -35,7 +37,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
       child: StreamBuilder<FlowState>(
         stream: _viewModel.outputState,
         builder: (context ,snapShot){
-          return snapShot.data?.getScreenWidget(context, _getContentWidget(),
+          return snapShot.data?.getScreenWidget(context, _getContentWidget(_viewModel.favorites),
                   (){
                 _viewModel.start();
               }) ?? Container();
@@ -44,8 +46,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
     );
   }
 
-  Widget _getContentWidget(){
-    if (_viewModel.favorites != null) {
+  Widget _getContentWidget(List<FavDataList>? favorites){
+    if (favorites != null) {
       return ListView.separated(
         scrollDirection: Axis.vertical,
         physics: const BouncingScrollPhysics(),
@@ -61,12 +63,12 @@ class _FavoritesPageState extends State<FavoritesPage> {
                     alignment: AlignmentDirectional.bottomStart,
                     children: [
                       Image(
-                        image: NetworkImage(_viewModel.favorites![index].product.image),
+                        image: NetworkImage(favorites[index].product.image),
                         height: AppSize.s120,
                         width: AppSize.s120,
                         fit: BoxFit.contain,
                       ),
-                      if(_viewModel.favorites![index].product.discount != 0)
+                      if(favorites[index].product.discount != 0)
                         Container(
                           color: Colors.red,
                           padding: const EdgeInsets.symmetric(horizontal: AppPadding.p_8,),
@@ -87,7 +89,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                       children: [
                         const SizedBox(width: 20,),
                         Text(
-                          _viewModel.favorites![index].product.name,
+                          favorites[index].product.name,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -100,16 +102,16 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         Row(
                           children: [
                             Text(
-                              _viewModel.favorites![index].product.price.toString(),
+                              favorites[index].product.price.toString(),
                               style: TextStyle(
                                   fontSize: AppSize.s14,
                                   color: ColorManager.black
                               ),
                             ),
                             const SizedBox(width: 10,),
-                            if(_viewModel.favorites![index].product.discount != 0)
+                            if(favorites[index].product.discount != 0)
                               Text(
-                                _viewModel.favorites![index].product.oldPrice.toString(),
+                                favorites[index].product.oldPrice.toString(),
                                 maxLines: 2,
                                 style: const TextStyle(
                                   fontSize: AppSize.s12,
@@ -125,10 +127,10 @@ class _FavoritesPageState extends State<FavoritesPage> {
                                 padding: EdgeInsets.zero,
                                 onPressed: ()
                                 {
-                                  // setState(() {
-                                  //   _homeViewModel.changeFavorites(_viewModel.favorites![index].product.id);
-                                  //   _viewModel.getFavorites();
-                                  // });
+                                  setState(() {
+                                    _homeViewModel.changeFavorites(favorites[index].product.id);
+                                    _viewModel.start();
+                                  });
                                 },
                                 icon: Icon(
                                   IconBroken.Heart,

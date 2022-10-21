@@ -322,5 +322,81 @@ class ChangeFavoritesResponse extends BaseResponse{
   factory ChangeFavoritesResponse.fromJson(Map<String ,dynamic> json) => _$ChangeFavoritesResponseFromJson(json);
   Map<String ,dynamic> toJson() => _$ChangeFavoritesResponseToJson(this);
 }
+//------------ carts --------------------
+@JsonSerializable()
+class CartProductsResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "price")
+  double? price;
+  @JsonKey(name: "old_price")
+  double? oldPrice;
+  @JsonKey(name: "discount")
+  double? discount;
+  @JsonKey(name: "image")
+  String? image;
+  @JsonKey(name: "name")
+  String? name;
+  @JsonKey(name: "description")
+  String? description;
+
+  CartProductsResponse(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description,
+      );
+
+  factory CartProductsResponse.fromJson(Map<String ,dynamic> json) => _$CartProductsResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$CartProductsResponseToJson(this);
+}
+
+@JsonSerializable()
+class CartItemResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "quantity")
+  int? quantity;
+  @JsonKey(name: "product")
+  CartProductsResponse? product;
+
+  CartItemResponse(
+      this.id,
+      this.quantity,
+      this.product,
+      );
+
+  factory CartItemResponse.fromJson(Map<String ,dynamic> json) => _$CartItemResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$CartItemResponseToJson(this);
+}
+
+@JsonSerializable()
+class CartDataResponse{
+  @JsonKey(name: "cart_items")
+  List<CartItemResponse>? cartItems;
+
+  CartDataResponse(
+      this.cartItems,
+      );
+
+  factory CartDataResponse.fromJson(Map<String ,dynamic> json) => _$CartDataResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$CartDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class CartResponse extends BaseResponse{
+  @JsonKey(name: "data")
+  CartDataResponse? data;
+
+  CartResponse(
+      this.data,
+      );
+
+  factory CartResponse.fromJson(Map<String ,dynamic> json) => _$CartResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$CartResponseToJson(this);
+}
 
 
