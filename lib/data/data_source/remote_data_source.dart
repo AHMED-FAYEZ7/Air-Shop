@@ -8,10 +8,11 @@ abstract class RemoteDataSource{
   Future<CategoriesResponse> getCategories();
   Future<FavResponse> getFavorites();
   Future<ChangeFavoritesResponse> changeFavorites(ChangeFavRequest changeFavRequest);
+  Future<CartResponse> getCarts();
 }
 
 class RemoteDataSourceImplementer implements RemoteDataSource{
-  AppServiceClient _appServiceClient;
+  final AppServiceClient _appServiceClient;
 
   RemoteDataSourceImplementer(this._appServiceClient);
 
@@ -33,6 +34,7 @@ class RemoteDataSourceImplementer implements RemoteDataSource{
     return await _appServiceClient.getHome();
   }
 
+
   @override
   Future<FavResponse> getFavorites() async {
     return await _appServiceClient.getFavorites();
@@ -45,5 +47,9 @@ class RemoteDataSourceImplementer implements RemoteDataSource{
     );
   }
 
+  @override
+  Future<CartResponse> getCarts() async {
+    return await _appServiceClient.getCarts();
+  }
 
 }
