@@ -78,6 +78,12 @@ emptyFavProduct(){
   return FavProduct(ZERO, doubleZERO, doubleZERO, doubleZERO, EMPTY, EMPTY, EMPTY);
 }
 
+// extension on PRODUCTCart
+emptyCartProduct(){
+  return CartProduct(ZERO, doubleZERO, doubleZERO, doubleZERO, EMPTY, EMPTY, EMPTY);
+}
+
+
 // extension on Change PRODUCT
 emptyChangeFavProduct(){
   return ChangeFavoritesProduct(ZERO, doubleZERO, doubleZERO, doubleZERO, EMPTY);
