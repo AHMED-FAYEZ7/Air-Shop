@@ -1,4 +1,4 @@
-import 'package:air_shop/presentation/main/card_page.dart';
+import 'package:air_shop/presentation/main/cart/cart_page.dart';
 import 'package:air_shop/presentation/main/categories/cat_page.dart';
 import 'package:air_shop/presentation/main/favorites/favoraites_page.dart';
 import 'package:air_shop/presentation/main/home/home_page.dart';
