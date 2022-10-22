@@ -398,5 +398,62 @@ class CartResponse extends BaseResponse{
   factory CartResponse.fromJson(Map<String ,dynamic> json) => _$CartResponseFromJson(json);
   Map<String ,dynamic> toJson() => _$CartResponseToJson(this);
 }
+// ---------- change carts ----------
+@JsonSerializable()
+class ChangeCartsProductsResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "price")
+  double? price;
+  @JsonKey(name: "old_price")
+  double? oldPrice;
+  @JsonKey(name: "discount")
+  double? discount;
+  @JsonKey(name: "image")
+  String? image;
+
+  ChangeCartsProductsResponse(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      );
+
+  factory ChangeCartsProductsResponse.fromJson(Map<String ,dynamic> json) => _$ChangeCartsProductsResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$ChangeCartsProductsResponseToJson(this);
+}
+
+@JsonSerializable()
+class ChangeCartsDataResponse{
+  @JsonKey(name: "id")
+  int? id;
+  @JsonKey(name: "quantity")
+  int? quantity;
+  @JsonKey(name: "product")
+  ChangeCartsProductsResponse? product;
+
+  ChangeCartsDataResponse(
+      this.id,
+      this.quantity,
+      this.product,
+      );
+
+  factory ChangeCartsDataResponse.fromJson(Map<String ,dynamic> json) => _$ChangeCartsDataResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$ChangeCartsDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class ChangeCartsResponse extends BaseResponse{
+  @JsonKey(name: "data")
+  ChangeCartsDataResponse? data;
+
+  ChangeCartsResponse(
+      this.data,
+      );
+
+  factory ChangeCartsResponse.fromJson(Map<String ,dynamic> json) => _$ChangeCartsResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$ChangeCartsResponseToJson(this);
+}
 
 
