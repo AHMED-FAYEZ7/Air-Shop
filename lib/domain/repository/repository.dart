@@ -10,4 +10,6 @@ abstract class Repository{
   Future<Either<Failure , FavObject>> getFavorites();
   Future<Either<Failure , ChangeFavoritesObject>> changeFavorites(ChangeFavRequest changeFavRequest);
   Future<Either<Failure , CartObject>> getCarts();
+  Future<Either<Failure , ChangeCartsObject>> changeCarts(ChangeCartsRequest changeCartsRequest);
+
 }
