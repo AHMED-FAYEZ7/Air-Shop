@@ -236,12 +236,16 @@ class _HomePageState extends State<HomePage> {
                                   ),
                                 const Spacer(),
                                 CircleAvatar(
-                                  backgroundColor: ColorManager.lightGrey,
+                                  backgroundColor: _viewModel.carts![products[index].id]! ? ColorManager.primary :ColorManager.lightGrey,
                                   radius: AppSize.s14,
                                   child: IconButton(
                                     padding: EdgeInsets.zero,
                                     onPressed: ()
-                                    {},
+                                    {
+                                      setState(() {
+                                        _viewModel.changeCarts(products[index].id);
+                                      });
+                                    },
                                     icon: Icon(
                                       Icons.shopping_cart_outlined,
                                       size: AppSize.s16,

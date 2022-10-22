@@ -19,6 +19,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../domain/usecase/change_carts.dart';
 import '../domain/usecase/fav_usecase.dart';
 
 final instance = GetIt.instance;
@@ -59,7 +60,7 @@ initLoginModule(){
 initHomeModule(){
   if(!GetIt.I.isRegistered<HomeUseCase>()){
     instance.registerFactory<HomeUseCase>(() => HomeUseCase(instance()));
-    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance(),instance(),instance()));
+    instance.registerFactory<HomeViewModel>(() => HomeViewModel(instance(),instance(),instance(),instance()));
   }
 }
 
@@ -90,6 +91,12 @@ initCartsModule(){
   }
 }
 
+initChangeCartsModule(){
+  if(!GetIt.I.isRegistered<ChaneCartsUseCase>()){
+    instance.registerFactory<ChaneCartsUseCase>(() => ChaneCartsUseCase(instance()));
+  }
+}
+
 resetAllModules(){
   instance.reset(dispose: false);
   initAppModule();
@@ -99,4 +106,5 @@ resetAllModules(){
   initFavoritesModule();
   initChangeFavoritesModule();
   initCartsModule();
+  initChangeCartsModule();
 }
