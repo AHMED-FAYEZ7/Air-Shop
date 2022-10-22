@@ -10,3 +10,9 @@ class ChangeFavRequest{
 
   ChangeFavRequest(this.productId);
 }
+
+class ChangeCartsRequest{
+  int productId;
+
+  ChangeCartsRequest(this.productId);
+}

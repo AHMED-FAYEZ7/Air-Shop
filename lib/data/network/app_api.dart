@@ -30,4 +30,9 @@ abstract class AppServiceClient{
 
   @GET("carts")
   Future<CartResponse> getCarts();
+
+  @POST("carts")
+  Future<ChangeCartsResponse> changeCarts(
+      @Field("product_id") int productId,
+      );
 }
