@@ -251,3 +251,39 @@ class CartObject{
 
   CartObject(this.data);
 }
+
+// ------ change cart -------------
+class ChangeCartsProduct{
+  int id;
+  double price;
+  double oldPrice;
+  double discount;
+  String image;
+
+
+  ChangeCartsProduct(
+      this.id,
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      );
+}
+
+class ChangeCartsData{
+  int id;
+  int quantity;
+  ChangeCartsProduct product;
+
+  ChangeCartsData(
+      this.id,
+      this.quantity,
+      this.product,
+      );
+}
+
+class ChangeCartsObject{
+  FavData data;
+
+  ChangeCartsObject(this.data);
+}
