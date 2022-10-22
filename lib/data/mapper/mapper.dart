@@ -197,4 +197,35 @@ extension CartResponseMapper on CartResponse? {
   }
 }
 
+// -------------------------
+extension ChangeCartsProductsResponseMapper on ChangeCartsProductsResponse?{
+  ChangeCartsProduct toDomain(){
+    return ChangeCartsProduct(
+      this?.id?.orZero() ?? ZERO,
+      this?.price?.orDoubleZero() ?? doubleZERO,
+      this?.oldPrice?.orDoubleZero() ?? doubleZERO,
+      this?.discount?.orDoubleZero() ?? doubleZERO,
+      this?.image?.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension ChangeCartsDataResponseMapper on ChangeCartsDataResponse?{
+  ChangeCartsData toDomain(){
+    return ChangeCartsData(
+      this?.id?.orZero() ?? ZERO,
+      this?.quantity?.orZero() ?? ZERO,
+      this?.product?.toDomain() ?? emptyChangeCartProduct(),
+    );
+  }
+}
+
+extension ChangeCartsResponseMapper on ChangeCartsResponse? {
+  ChangeCartsObject toDomain(){
+    return ChangeCartsObject(
+      this?.data?.toDomain() ?? emptyChangeCartProductData(),
+    );
+  }
+}
+
 

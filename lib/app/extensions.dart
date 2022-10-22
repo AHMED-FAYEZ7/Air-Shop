@@ -93,3 +93,13 @@ emptyChangeFavProduct(){
 emptyChangeFavProductData(){
   return ChangeFavoritesData(ZERO, emptyChangeFavProduct());
 }
+
+// extension on Change PRODUCT
+emptyChangeCartProduct(){
+  return ChangeCartsProduct(ZERO, doubleZERO, doubleZERO, doubleZERO, EMPTY);
+}
+
+// extension on Change PRODUCT data
+emptyChangeCartProductData(){
+  return ChangeCartsData(ZERO,ZERO, emptyChangeCartProduct());
+}
