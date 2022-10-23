@@ -2,6 +2,7 @@ import 'package:air_shop/app/di.dart';
 import 'package:air_shop/domain/model/model.dart';
 import 'package:air_shop/presentation/common/state_renderer/state_renderer_impl.dart';
 import 'package:air_shop/presentation/main/cart/cart_vm.dart';
+import 'package:air_shop/presentation/main/home/home_viewmodel.dart';
 import 'package:air_shop/presentation/resources/color_manager.dart';
 import 'package:air_shop/presentation/resources/strings_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
@@ -16,11 +17,11 @@ class CartPage extends StatefulWidget {
 
 class _CartPageState extends State<CartPage> {
   final CartsViewModel _viewModel = instance<CartsViewModel>();
-  // final HomeViewModel _homeViewModel = instance<HomeViewModel>();
+  final HomeViewModel _homeViewModel = instance<HomeViewModel>();
 
   _bind(){
     _viewModel.start();
-    // _homeViewModel.start();
+    _homeViewModel.start();
   }
 
   @override
@@ -125,10 +126,10 @@ class _CartPageState extends State<CartPage> {
                                 padding: EdgeInsets.zero,
                                 onPressed: ()
                                 {
-                                  // setState(() {
-                                  //   _homeViewModel.changeFavorites(favorites[index].product.id);
-                                  //   _viewModel.start();
-                                  // });
+                                  setState(() {
+                                    _homeViewModel.changeCarts(carts[index].product.id);
+                                    _viewModel.start();
+                                  });
                                 },
                                 icon: Icon(
                                   Icons.shopping_cart_outlined,
@@ -162,7 +163,7 @@ class _CartPageState extends State<CartPage> {
   @override
   void dispose() {
     _viewModel.dispose();
-    // _homeViewModel.dispose();
+    _homeViewModel.dispose();
     super.dispose();
   }
 }
