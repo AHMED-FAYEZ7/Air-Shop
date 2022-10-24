@@ -138,6 +138,22 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               ),
                             ),
+                            CircleAvatar(
+                              backgroundColor: ColorManager.primary,
+                              radius: AppSize.s14,
+                              child: IconButton(
+                                padding: EdgeInsets.zero,
+                                onPressed: ()
+                                {
+
+                                },
+                                icon: Icon(
+                                  Icons.shopping_cart_outlined,
+                                  size: AppSize.s16,
+                                  color: ColorManager.white,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ],
