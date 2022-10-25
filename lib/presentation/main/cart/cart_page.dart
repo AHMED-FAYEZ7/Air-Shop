@@ -18,6 +18,7 @@ class CartPage extends StatefulWidget {
 class _CartPageState extends State<CartPage> {
   final CartsViewModel _viewModel = instance<CartsViewModel>();
   final HomeViewModel _homeViewModel = instance<HomeViewModel>();
+  int price = 0;
 
   _bind(){
     _viewModel.start();
@@ -119,40 +120,59 @@ class _CartPageState extends State<CartPage> {
                                 ),
                               ),
                             const Spacer(),
-                            CircleAvatar(
-                              backgroundColor: ColorManager.primary,
-                              radius: AppSize.s14,
-                              child: IconButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: ()
-                                {
-                                  setState(() {
-                                    _homeViewModel.changeCarts(carts[index].product.id);
-                                    _viewModel.start();
-                                  });
-                                },
-                                icon: Icon(
-                                  Icons.shopping_cart_outlined,
-                                  size: AppSize.s16,
-                                  color: ColorManager.white,
+                            // setState(() {
+                            //   _homeViewModel.changeCarts(carts[index].product.id);
+                            //   _viewModel.start();
+                            // });
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: 25,
+                                  width: 25,
+                                  child: FloatingActionButton(
+                                    onPressed: ()
+                                    {
+                                      setState(() {
+                                        price--;
+                                      });
+                                    },
+                                    child: const Icon(
+                                      Icons.remove,
+                                      size: 20,
+                                    ),
+                                    mini: true,
+                                    heroTag: 'price-',
+                                  ),
                                 ),
-                              ),
-                            ),
-                            CircleAvatar(
-                              backgroundColor: ColorManager.primary,
-                              radius: AppSize.s14,
-                              child: IconButton(
-                                padding: EdgeInsets.zero,
-                                onPressed: ()
-                                {
-
-                                },
-                                icon: Icon(
-                                  Icons.shopping_cart_outlined,
-                                  size: AppSize.s16,
-                                  color: ColorManager.white,
+                                SizedBox(width: 5,),
+                                Text(
+                                  '$price',
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w900,
+                                  ),
                                 ),
-                              ),
+                                SizedBox(width: 5,),
+                                Container(
+                                  height: 25,
+                                  width: 25,
+                                  child: FloatingActionButton(
+                                    onPressed: ()
+                                    {
+                                      setState(() {
+                                        price++;
+                                      });
+                                    },
+                                    child: const Icon(
+                                      Icons.add,
+                                      size: 20,
+                                    ),
+                                    mini: true,
+                                    heroTag: 'price+',
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
