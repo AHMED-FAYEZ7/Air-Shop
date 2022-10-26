@@ -9,7 +9,7 @@ class ImageAssets
   static const String onBoardingLogo1 = "$IMAGE_PATH/onboarding_logo1.svg";
   static const String onBoardingLogo2 = "$IMAGE_PATH/onboarding_logo2.svg";
   static const String onBoardingLogo3 = "$IMAGE_PATH/onboarding_logo3.svg";
-  static const String receipt = "$IMAGE_PATH/receipt.svg";
+  static const String receipt = "$IMAGE_PATH/receipt.png";
 }
 
 class JsonAssets{

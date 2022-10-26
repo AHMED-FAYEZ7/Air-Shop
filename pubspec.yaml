@@ -86,7 +86,7 @@ flutter:
     - assets/images/onboarding_logo1.svg
     - assets/images/onboarding_logo2.svg
     - assets/images/onboarding_logo3.svg
-    - assets/images/receipt.svg
+    - assets/images/receipt.png
     - assets/json/error.json
     - assets/json/loading.json
     - assets/json/empty.json
