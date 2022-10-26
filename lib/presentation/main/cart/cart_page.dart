@@ -9,7 +9,6 @@ import 'package:air_shop/presentation/resources/icons_manager.dart';
 import 'package:air_shop/presentation/resources/strings_manager.dart';
 import 'package:air_shop/presentation/resources/values_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);
@@ -222,7 +221,7 @@ class _CartPageState extends State<CartPage> {
             vertical: AppPadding.p16,
             horizontal: AppPadding.p30,
           ),
-          height: AppSize.s180,
+          height: AppSize.s140,
           decoration: BoxDecoration(
             color: ColorManager.white,
             borderRadius: BorderRadius.only(
@@ -251,7 +250,9 @@ class _CartPageState extends State<CartPage> {
                         color: Color(0xFFF5F6F9),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: SvgPicture.asset("assets/images/receipt.svg"),
+                      child: Image.asset(
+                        ImageAssets.receipt,
+                      ),
                     ),
                     Spacer(),
                     Text("Add voucher code"),
@@ -261,6 +262,36 @@ class _CartPageState extends State<CartPage> {
                       size: 12,
                       color: ColorManager.grey,
                     )
+                  ],
+                ),
+                SizedBox(height: AppSize.s20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text.rich(
+                      TextSpan(
+                        text: "Total:\n",
+                        children: [
+                          TextSpan(
+                            text: "\$337.15",
+                            style: TextStyle(fontSize: 16, color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      width:AppSize.s180,
+                      child: MaterialButton(
+                        child: Text(
+                            "Check Out",
+                          style: TextStyle(
+                            color: ColorManager.white,
+                          ),
+                        ),
+                        onPressed: () {  },
+                        color: ColorManager.primary,
+                      ),
+                    ),
                   ],
                 ),
               ],
