@@ -97,7 +97,7 @@ class _MainViewState extends State<MainView> {
           ),
           BottomNavyBarItem(
               icon: Icon(Icons.shopping_cart_outlined),
-              title: Text(AppStrings.card),
+              title: Text(AppStrings.cart),
               activeColor: ColorManager.white,
               inactiveColor: ColorManager.black
           ),
