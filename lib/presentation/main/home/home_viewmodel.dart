@@ -49,8 +49,8 @@ class HomeViewModel extends BaseViewModel{
           element.id : element.inCart,
         });
       }
-      print(favorites.toString());
-      print(carts.toString());
+      // print(favorites.toString());
+      // print(carts.toString());
     });
 
     (await _categoriesUseCase.execute(Void)).fold((failure) {
@@ -68,7 +68,6 @@ class HomeViewModel extends BaseViewModel{
       // favorites![productId] = !favorites![productId]!;
     }, (changeFavoritesObject) {
       // favorites![productId] = !favorites![productId]!;
-
     });
   }
 
@@ -78,10 +77,10 @@ class HomeViewModel extends BaseViewModel{
         .fold((failure) {
       // favorites![productId] = !favorites![productId]!;
     }, (changeFavoritesObject) {
-      // favorites![productId] = !favorites![productId]!;
 
     });
   }
+
 
 
 }

@@ -21,6 +21,7 @@ class _CartPageState extends State<CartPage> {
   final CartsViewModel _viewModel = instance<CartsViewModel>();
   final HomeViewModel _homeViewModel = instance<HomeViewModel>();
   int price = 0;
+  int total = 0;
 
   _bind(){
     _viewModel.start();
@@ -74,10 +75,7 @@ class _CartPageState extends State<CartPage> {
               ),
             ),
             onDismissed: (direction){
-              setState(() {
-                _homeViewModel.changeCarts(carts[index].product.id);
-                _viewModel.start();
-              });
+              _homeViewModel.changeCarts(carts[index].product.id);
             },
             child: Card(
               elevation: 1,
@@ -273,7 +271,7 @@ class _CartPageState extends State<CartPage> {
                         text: "Total:\n",
                         children: [
                           TextSpan(
-                            text: "\$337.15",
+                            text: "\$87527",
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                         ],
@@ -303,6 +301,10 @@ class _CartPageState extends State<CartPage> {
       return Container();
     }
   }
+
+  // void result(carts){
+  //   for (var)
+  // }
 
   @override
   void dispose() {

@@ -192,7 +192,10 @@ extension CartResponseMapper on CartResponse? {
         .cast<CartItem>()
         .toList();
 
-    var data = CartData(mappedCartDataList);
+    double total =
+    (this?.data?.total?.orDoubleZero() ?? doubleZERO);
+
+    var data = CartData(mappedCartDataList,total);
     return CartObject(data);
   }
 }

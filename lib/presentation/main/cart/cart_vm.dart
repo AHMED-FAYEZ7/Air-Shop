@@ -10,6 +10,8 @@ import '../../common/state_renderer/state_renderer.dart';
 class CartsViewModel extends BaseViewModel {
   final CartUseCase _cartUseCase;
   List<CartItem>? carts =[];
+  // CartData? cartData;
+
 
   CartsViewModel(this._cartUseCase);
 
@@ -26,6 +28,8 @@ class CartsViewModel extends BaseViewModel {
     }, (favoritesObject) {
       inputState.add(ContentState());
       carts = favoritesObject.data.cartItems;
+      // cartData = favoritesObject.data;
+
     });
   }
 
