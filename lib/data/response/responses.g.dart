@@ -341,11 +341,13 @@ CartDataResponse _$CartDataResponseFromJson(Map<String, dynamic> json) =>
       (json['cart_items'] as List<dynamic>?)
           ?.map((e) => CartItemResponse.fromJson(e as Map<String, dynamic>))
           .toList(),
+      (json['total'] as num?)?.toDouble(),
     );
 
 Map<String, dynamic> _$CartDataResponseToJson(CartDataResponse instance) =>
     <String, dynamic>{
       'cart_items': instance.cartItems,
+      'total': instance.total,
     };
 
 CartResponse _$CartResponseFromJson(Map<String, dynamic> json) => CartResponse(

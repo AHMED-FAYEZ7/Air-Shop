@@ -377,9 +377,12 @@ class CartItemResponse{
 class CartDataResponse{
   @JsonKey(name: "cart_items")
   List<CartItemResponse>? cartItems;
+  @JsonKey(name: "total")
+  double? total;
 
   CartDataResponse(
       this.cartItems,
+      this.total,
       );
 
   factory CartDataResponse.fromJson(Map<String ,dynamic> json) => _$CartDataResponseFromJson(json);

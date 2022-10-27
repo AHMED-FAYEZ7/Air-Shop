@@ -240,9 +240,11 @@ class CartItem{
 
 class CartData{
   List<CartItem> cartItems;
+  double total;
 
   CartData(
       this.cartItems,
+      this.total,
       );
 }
 
