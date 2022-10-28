@@ -289,3 +289,20 @@ class ChangeCartsObject{
 
   ChangeCartsObject(this.data);
 }
+
+// ------ settings -------------
+class SettingsData{
+  String about;
+  String terms;
+
+  SettingsData(
+      this.about,
+      this.terms,
+      );
+}
+
+class SettingsObject{
+  SettingsData data;
+
+  SettingsObject(this.data);
+}

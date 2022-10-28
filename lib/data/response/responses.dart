@@ -462,9 +462,9 @@ class ChangeCartsResponse extends BaseResponse{
 @JsonSerializable()
 class SettingsDataResponse{
   @JsonKey(name: "about")
-  int? about;
+  String? about;
   @JsonKey(name: "terms")
-  int? terms;
+  String? terms;
 
   SettingsDataResponse(
       this.about,
