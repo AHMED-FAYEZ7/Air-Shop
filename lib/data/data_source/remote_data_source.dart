@@ -10,6 +10,7 @@ abstract class RemoteDataSource{
   Future<ChangeFavoritesResponse> changeFavorites(ChangeFavRequest changeFavRequest);
   Future<CartResponse> getCarts();
   Future<ChangeCartsResponse> changeCarts(ChangeCartsRequest changeCartsRequest);
+  Future<SettingsResponse> getSettings();
 }
 
 class RemoteDataSourceImplementer implements RemoteDataSource{
@@ -58,6 +59,11 @@ class RemoteDataSourceImplementer implements RemoteDataSource{
     return await _appServiceClient.changeCarts(
       changeCartsRequest.productId,
     );
+  }
+
+  @override
+  Future<SettingsResponse> getSettings() async {
+    return await _appServiceClient.getSettings();
   }
 
 }

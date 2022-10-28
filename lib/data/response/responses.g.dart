@@ -425,8 +425,8 @@ Map<String, dynamic> _$ChangeCartsResponseToJson(
 SettingsDataResponse _$SettingsDataResponseFromJson(
         Map<String, dynamic> json) =>
     SettingsDataResponse(
-      json['about'] as int?,
-      json['terms'] as int?,
+      json['about'] as String?,
+      json['terms'] as String?,
     );
 
 Map<String, dynamic> _$SettingsDataResponseToJson(
