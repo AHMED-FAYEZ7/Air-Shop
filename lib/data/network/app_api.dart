@@ -35,4 +35,7 @@ abstract class AppServiceClient{
   Future<ChangeCartsResponse> changeCarts(
       @Field("product_id") int productId,
       );
+
+  @GET("settings")
+  Future<SettingsResponse> getSettings();
 }
