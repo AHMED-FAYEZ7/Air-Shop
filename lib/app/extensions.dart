@@ -103,3 +103,8 @@ emptyChangeCartProduct(){
 emptyChangeCartProductData(){
   return ChangeCartsData(ZERO,ZERO, emptyChangeCartProduct());
 }
+
+// extension on Change PRODUCT data
+emptySettingsData(){
+  return SettingsData(EMPTY,EMPTY);
+}

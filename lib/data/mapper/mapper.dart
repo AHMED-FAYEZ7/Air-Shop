@@ -231,4 +231,21 @@ extension ChangeCartsResponseMapper on ChangeCartsResponse? {
   }
 }
 
+//--------------------------
+extension SettingsDataResponseMapper on SettingsDataResponse?{
+  SettingsData toDomain(){
+    return SettingsData(
+      this?.about?.orEmpty() ?? EMPTY,
+      this?.terms?.orEmpty() ?? EMPTY,
+    );
+  }
+}
+
+extension SettingsResponseMapper on SettingsResponse? {
+  SettingsObject toDomain(){
+    return SettingsObject(
+      this?.data?.toDomain() ?? emptySettingsData(),
+    );
+  }
+}
 
