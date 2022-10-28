@@ -421,3 +421,33 @@ Map<String, dynamic> _$ChangeCartsResponseToJson(
       'message': instance.message,
       'data': instance.data,
     };
+
+SettingsDataResponse _$SettingsDataResponseFromJson(
+        Map<String, dynamic> json) =>
+    SettingsDataResponse(
+      json['about'] as int?,
+      json['terms'] as int?,
+    );
+
+Map<String, dynamic> _$SettingsDataResponseToJson(
+        SettingsDataResponse instance) =>
+    <String, dynamic>{
+      'about': instance.about,
+      'terms': instance.terms,
+    };
+
+SettingsResponse _$SettingsResponseFromJson(Map<String, dynamic> json) =>
+    SettingsResponse(
+      json['data'] == null
+          ? null
+          : SettingsDataResponse.fromJson(json['data'] as Map<String, dynamic>),
+    )
+      ..status = json['status'] as bool?
+      ..message = json['message'] as String?;
+
+Map<String, dynamic> _$SettingsResponseToJson(SettingsResponse instance) =>
+    <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': instance.data,
+    };

@@ -458,5 +458,33 @@ class ChangeCartsResponse extends BaseResponse{
   factory ChangeCartsResponse.fromJson(Map<String ,dynamic> json) => _$ChangeCartsResponseFromJson(json);
   Map<String ,dynamic> toJson() => _$ChangeCartsResponseToJson(this);
 }
+//------------------settings -----------------------
+@JsonSerializable()
+class SettingsDataResponse{
+  @JsonKey(name: "about")
+  int? about;
+  @JsonKey(name: "terms")
+  int? terms;
 
+  SettingsDataResponse(
+      this.about,
+      this.terms,
+      );
+
+  factory SettingsDataResponse.fromJson(Map<String ,dynamic> json) => _$SettingsDataResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$SettingsDataResponseToJson(this);
+}
+
+@JsonSerializable()
+class SettingsResponse extends BaseResponse{
+  @JsonKey(name: "data")
+  SettingsDataResponse? data;
+
+  SettingsResponse(
+      this.data,
+      );
+
+  factory SettingsResponse.fromJson(Map<String ,dynamic> json) => _$SettingsResponseFromJson(json);
+  Map<String ,dynamic> toJson() => _$SettingsResponseToJson(this);
+}
 
