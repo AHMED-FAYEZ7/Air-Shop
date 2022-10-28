@@ -207,7 +207,7 @@ class RepositoryImpl extends Repository {
   }
 
   @override
-  Future<Either<Failure, SettingsObject>> gatSettings() async {
+  Future<Either<Failure, SettingsObject>> getSettings() async {
     if (await _networkInfo.isConnected) {
       try{
         // its safe to call the API
